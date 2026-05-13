@@ -1,0 +1,97 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 20% 20%, var(--surface-tint), transparent 28%),
+    radial-gradient(circle at 80% 0%, var(--surface-tint-strong), transparent 26%),
+    var(--bg-color);
+  backdrop-filter: blur(14px);
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.4rem 1.8rem;
+  border-radius: 1.8rem;
+  background: var(--card-bg);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 1.8rem 5rem var(--shadow);
+}
+
+.rings {
+  position: relative;
+  width: 4.8rem;
+  height: 4.8rem;
+}
+
+.rings span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--surface-border);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.rings span:nth-child(2) {
+  inset: 0.8rem;
+  animation-delay: 0.18s;
+}
+
+.rings span:nth-child(3) {
+  inset: 1.6rem;
+  animation-delay: 0.36s;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.label {
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    gap: 1.2rem;
+    padding: 1.2rem 1.4rem;
+  }
+
+  .rings {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+}

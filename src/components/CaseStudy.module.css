@@ -1,0 +1,128 @@
+.section {
+  background: linear-gradient(160deg, var(--bg-color) 0%, var(--surface-tint) 55%, var(--surface-tint-strong) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 5rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--primary-mid);
+  background: var(--surface-tint);
+  border: 1px solid var(--surface-border);
+  padding: 0.5rem 1.4rem;
+  border-radius: 99px;
+  margin-bottom: 2rem;
+}
+
+.header h2 { color: #ecfffb !important; }
+.header h2 span { color: var(--primary-mid) !important; }
+
+.problem {
+  font-size: 1.6rem;
+  color: rgba(236, 255, 251, 0.76);
+  line-height: 1.8;
+}
+
+.problem strong { color: var(--primary-mid); }
+
+/* Role grid */
+.roleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 5rem;
+}
+
+.roleCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  border-radius: 2rem;
+  padding: 3.5rem 3rem;
+  transition: border-color 0.4s, box-shadow 0.4s;
+  cursor: default;
+}
+
+.roleCard:hover {
+  border-color: var(--surface-glow);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5), 0 0 3rem var(--surface-tint);
+}
+
+.roleIcon {
+  width: 7.4rem;
+  height: 7.4rem;
+  border-radius: 1.6rem;
+  background: var(--surface-tint);
+  border: 1px solid var(--surface-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.roleIconSvg {
+  width: 3.8rem;
+  height: 3.8rem;
+  color: var(--primary-mid);
+  display: block;
+}
+
+.roleTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ecfffb;
+  margin-bottom: 1.2rem;
+}
+
+.roleDesc {
+  font-size: 1.5rem;
+  color: rgba(236, 255, 251, 0.68);
+  line-height: 1.8;
+}
+
+/* Tech chips */
+.techRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.techLabel {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(236, 255, 251, 0.62);
+  margin-right: 0.5rem;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+.chip {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 0.5rem 1.3rem;
+  border-radius: 99px;
+  background: var(--surface-tint);
+  border: 1px solid var(--surface-border);
+  color: var(--primary-mid);
+}
+
+.ctas { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+
+@media (max-width: 600px) {
+  .roleGrid { grid-template-columns: 1fr; }
+}

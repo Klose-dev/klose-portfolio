@@ -1,0 +1,79 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Space Grotesk', 'Poppins', monospace;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: filter 0.3s ease;
+}
+
+.logo:hover { filter: drop-shadow(0 0 12px var(--surface-glow)); }
+
+.iconWrap {
+  width: 2.6rem;
+  height: 2.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 0.8rem;
+  background: var(--surface-tint);
+  border: 1px solid var(--surface-border);
+}
+
+.logoIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--primary-mid);
+}
+
+.md  { font-size: 2.4rem; }
+.sm  { font-size: 1.8rem; }
+.lg  { font-size: 3rem; }
+
+.bracket {
+  color: var(--primary-mid);
+  font-weight: 400;
+}
+
+.name {
+  color: var(--text-color);
+  font-weight: 700;
+  padding: 0 0.1em;
+}
+
+.slash {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.cursor {
+  color: var(--primary-mid);
+  font-weight: 300;
+  animation: blink 1s step-end infinite;
+  margin-left: 1px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    gap: 0.65rem;
+  }
+
+  .iconWrap {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+
+  .logoIcon {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

@@ -1,0 +1,92 @@
+.skills {
+  background: linear-gradient(180deg, var(--card-bg) 0%, var(--surface-tint) 100%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 4rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.ringWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.ringIconAbove {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -0.25rem;
+}
+
+.svgBox {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svgBox svg {
+  position: absolute;
+  inset: 0;
+  filter: drop-shadow(0 0 12px var(--surface-glow));
+}
+
+.ringCenter {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  pointer-events: none;
+}
+
+.skillIcon {
+  width: 2.8rem;
+  height: 2.8rem;
+  color: var(--accent-light);
+  display: block;
+  flex-shrink: 0;
+}
+
+.pct {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1;
+}
+
+.ringLabel {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
+
+  .ringIconAbove {
+    margin-bottom: -0.2rem;
+  }
+
+  .svgBox {
+    width: 140px;
+    height: 140px;
+  }
+
+  .skillIcon {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+}

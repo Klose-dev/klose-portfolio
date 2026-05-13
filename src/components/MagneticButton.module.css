@@ -1,0 +1,59 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1.2rem 2.8rem;
+  transition: all 0.4s ease;
+  letter-spacing: 0.05em;
+}
+
+.text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  pointer-events: none;
+}
+
+/* Variants */
+.solid {
+  background: var(--primary-mid);
+  color: var(--deep-dark);
+  border: 0.2rem solid var(--primary-mid);
+  box-shadow: 0 0.4rem 2rem var(--surface-glow);
+}
+.solid:hover {
+  background: var(--deep-dark);
+  color: var(--primary-mid);
+  box-shadow: 0 0.4rem 3rem var(--surface-glow);
+}
+
+.outline {
+  background: transparent;
+  color: var(--primary-mid);
+  border: 0.2rem solid var(--primary-mid);
+}
+.outline:hover {
+  background: var(--primary-mid);
+  color: var(--deep-dark);
+  box-shadow: 0 0.4rem 2rem var(--surface-glow);
+}
+
+.glass {
+  background: var(--surface-tint);
+  color: var(--text-color);
+  border: 0.2rem solid var(--surface-border);
+  backdrop-filter: blur(10px);
+}
+.glass:hover {
+  background: var(--surface-tint-strong);
+  border-color: var(--primary-mid);
+  box-shadow: 0 0 2rem var(--surface-glow);
+}

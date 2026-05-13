@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --primary-dark:   #1a1a1a;
+  --primary-mid:    #000000;
+  --accent-light:   #ffffff;
+  --deep-dark:      #ffffff;
+  --bg-color:       #ffffff;
+  --text-color:     #111111;
+  --text-muted:     #555555;
+  --white:          #ffffff;
+  --card-bg:        #ffffff;
+  --input-bg:       #f2f2f2;
+  --shadow:         rgba(0, 0, 0, 0.12);
+  --shadow-dark:    rgba(0, 0, 0, 0.2);
+  --navbar-bg:      rgba(255, 255, 255, 0.82);
+  --navbar-border:  rgba(0, 0, 0, 0.12);
+  --surface-tint:   rgba(0, 0, 0, 0.04);
+  --surface-tint-strong: rgba(0, 0, 0, 0.08);
+  --surface-border: rgba(0, 0, 0, 0.12);
+  --surface-glow:   rgba(0, 0, 0, 0.18);
+  --whatsapp-bg:    #000000;
+  --whatsapp-fg:    #ffffff;
+  --whatsapp-border:#000000;
+  --whatsapp-ring:  rgba(0, 0, 0, 0.18);
+  --section-pad:    10rem 7% 4rem;
+}
+
+body.dark-mode {
+  --primary-dark:   #e5e5e5;
+  --primary-mid:    #ffffff;
+  --accent-light:   #ffffff;
+  --deep-dark:      #000000;
+  --bg-color:       #0a0a0a;
+  --text-color:     #f5f5f5;
+  --text-muted:     #b5b5b5;
+  --white:          #f5f5f5;
+  --card-bg:        #111111;
+  --input-bg:       #1a1a1a;
+  --shadow:         rgba(0, 0, 0, 0.42);
+  --shadow-dark:    rgba(0, 0, 0, 0.72);
+  --navbar-bg:      rgba(10, 10, 10, 0.82);
+  --navbar-border:  rgba(255, 255, 255, 0.12);
+  --surface-tint:   rgba(255, 255, 255, 0.05);
+  --surface-tint-strong: rgba(255, 255, 255, 0.1);
+  --surface-border: rgba(255, 255, 255, 0.12);
+  --surface-glow:   rgba(255, 255, 255, 0.18);
+  --whatsapp-bg:    #ffffff;
+  --whatsapp-fg:    #000000;
+  --whatsapp-border:#ffffff;
+  --whatsapp-ring:  rgba(255, 255, 255, 0.18);
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 10rem;
+}
+
+body,
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 12%, var(--surface-tint), transparent 28%),
+    radial-gradient(circle at 88% 0%, var(--surface-tint-strong), transparent 30%),
+    var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--primary-mid);
+  color: var(--deep-dark);
+}
+
+section {
+  min-height: 100vh;
+  padding: var(--section-pad);
+  scroll-margin-top: 10rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
+}
+
+h2.heading {
+  text-align: center;
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 5rem;
+  color: var(--text-color);
+}
+
+h2.heading span {
+  color: var(--primary-mid);
+}
+
+.btn {
+  display: inline-block;
+  padding: 1.2rem 2.8rem;
+  background: var(--primary-mid);
+  border-radius: 0.6rem;
+  box-shadow: 0 0.4rem 1.5rem var(--shadow-dark);
+  font-size: 1.6rem;
+  color: var(--deep-dark);
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  border: 0.2rem solid transparent;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--primary-mid);
+  border-color: var(--primary-mid);
+  box-shadow: 0 0 2rem var(--surface-glow);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: var(--primary-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-mid); }
+
+/* Responsive base */
+@media (max-width: 768px) {
+  html { font-size: 55%; }
+  section { padding: 8rem 5% 3rem; }
+  h2.heading { font-size: 3.5rem; margin-bottom: 3rem; }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 50%; }
+  section { padding: 8rem 4% 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

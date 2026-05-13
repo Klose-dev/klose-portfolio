@@ -1,0 +1,117 @@
+.services {
+  background: linear-gradient(180deg, var(--surface-tint) 0%, var(--bg-color) 100%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  background: linear-gradient(180deg, var(--card-bg), var(--surface-tint));
+  border: 1px solid var(--surface-border);
+  border-radius: 2rem;
+  padding: 4rem 3rem;
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  cursor: default;
+}
+
+.card:hover {
+  border-color: var(--surface-glow);
+  box-shadow: 0 2rem 5rem var(--shadow);
+}
+
+.card:hover .cardGlow { opacity: 1; }
+
+.iconWrap {
+  position: relative;
+  width: 8.4rem;
+  height: 8.4rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.serviceIcon {
+  width: 4.4rem;
+  height: 4.4rem;
+  color: var(--primary-mid);
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.iconGlow {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-tint);
+  border: 1px solid var(--surface-border);
+  border-radius: 1.4rem;
+  transition: all 0.4s ease;
+}
+
+.card:hover .iconGlow {
+  background: var(--surface-tint-strong);
+  box-shadow: 0 0 2rem var(--surface-glow);
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.desc {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  opacity: 0.75;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.tag {
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.4rem 1.2rem;
+  border-radius: 99px;
+  background: var(--surface-tint);
+  border: 1px solid var(--surface-border);
+  color: var(--primary-mid);
+}
+
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, var(--surface-tint), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: 2rem;
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { padding: 3rem 2rem; }
+  .iconWrap {
+    width: 7.6rem;
+    height: 7.6rem;
+  }
+
+  .serviceIcon {
+    width: 3.8rem;
+    height: 3.8rem;
+  }
+}

@@ -1,0 +1,113 @@
+.about {
+  background: linear-gradient(180deg, var(--bg-color) 0%, var(--surface-tint) 100%);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  align-items: center;
+  gap: 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Image ── */
+.imgWrap { position: relative; }
+
+.imgBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 2rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 60%, var(--accent-light) 100%);
+  box-shadow: 0 2rem 5rem var(--shadow-dark);
+}
+
+.imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62) 0%, transparent 60%);
+}
+
+.expBadge {
+  position: absolute;
+  bottom: -2rem;
+  right: -2rem;
+  background: var(--primary-mid);
+  color: var(--deep-dark);
+  padding: 1.8rem 2.2rem;
+  border-radius: 1.2rem;
+  text-align: center;
+  box-shadow: 0 0.8rem 2rem var(--surface-glow);
+}
+
+.expNum {
+  display: block;
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.expLabel {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* ── Content ── */
+.content { display: flex; flex-direction: column; gap: 2rem; }
+
+.tag {
+  display: inline-block;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-mid);
+  background: var(--surface-tint);
+  border: 1px solid var(--surface-border);
+  padding: 0.5rem 1.4rem;
+  border-radius: 99px;
+  width: fit-content;
+}
+
+.bio {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  line-height: 1.8;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+}
+
+.infoItem { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.infoLabel {
+  font-size: 1.2rem;
+  color: var(--primary-mid);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infoVal {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .container { grid-template-columns: 1fr; gap: 4rem; }
+  .imgBox { max-width: 36rem; margin: 0 auto; }
+  .expBadge { right: 0; }
+  .info { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,12 @@
+.wrapper { font-weight: 600; }
+
+.text {
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  tracking: wide;
+}
+
+.word {
+  display: inline;
+}

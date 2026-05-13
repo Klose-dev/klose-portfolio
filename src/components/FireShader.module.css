@@ -1,0 +1,11 @@
+.fire {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.fire canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
