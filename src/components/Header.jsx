@@ -6,12 +6,12 @@ import Icon from './Icon'
 import styles from './Header.module.css'
 
 const navLinks = [
-  { href: '#home',      label: 'Home'      },
-  { href: '#about',     label: 'About'     },
-  { href: '#services',  label: 'Services'  },
-  { href: '#skills',    label: 'Skills'    },
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#services', label: 'Services' },
+  { href: '#skills', label: 'Skills' },
   { href: '#portfolio', label: 'Portfolio' },
-  { href: '#contact',   label: 'Contact'   },
+  { href: '#contact', label: 'Contact' },
 ]
 
 export default function Header() {
@@ -35,7 +35,7 @@ export default function Header() {
       },
       {
         root: null,
-        rootMargin: '-22% 0px -60% 0px',
+        rootMargin: '-18% 0px -58% 0px',
         threshold: [0.15, 0.3, 0.5, 0.7],
       }
     )
@@ -43,6 +43,24 @@ export default function Header() {
     sections.forEach(section => observer.observe(section))
     return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 901px)')
+    const handleResize = () => {
+      if (mediaQuery.matches) {
+        setMenuOpen(false)
+      }
+    }
+
+    handleResize()
+    mediaQuery.addEventListener?.('change', handleResize)
+
+    return () => {
+      mediaQuery.removeEventListener?.('change', handleResize)
+    }
+  }, [])
+
+  const closeMenu = () => setMenuOpen(false)
 
   return (
     <motion.header
@@ -53,13 +71,13 @@ export default function Header() {
     >
       <AnimatedLogo size="md" />
 
-      <nav className={`${styles.navbar} ${menuOpen ? styles.open : ''}`}>
+      <nav className={styles.navbar} aria-label="Main navigation">
         {navLinks.map(link => (
           <a
             key={link.href}
             href={link.href}
             className={`${styles.navLink} ${active === link.href ? styles.navActive : ''}`}
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
           >
             {link.label}
           </a>
@@ -67,16 +85,25 @@ export default function Header() {
       </nav>
 
       <div className={styles.actions}>
-        <button className={styles.themeBtn} onClick={toggle} aria-label="Toggle theme">
+        <button
+          className={styles.themeBtn}
+          onClick={toggle}
+          aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+          type="button"
+        >
           {isDark
             ? <Icon name="bx bx-sun" className={styles.themeIcon} />
             : <Icon name="bx bx-moon" className={styles.themeIcon} />
           }
         </button>
+
         <button
           className={`${styles.menuBtn} ${menuOpen ? styles.menuOpen : ''}`}
           onClick={() => setMenuOpen(p => !p)}
-          aria-label="Toggle menu"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          type="button"
         >
           <span /><span /><span />
         </button>
@@ -85,18 +112,21 @@ export default function Header() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="mobile-navigation"
             className={styles.mobileMenu}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
+            role="menu"
+            aria-label="Mobile navigation"
           >
             {navLinks.map(link => (
               <a
                 key={link.href}
                 href={link.href}
                 className={`${styles.mobileLink} ${active === link.href ? styles.navActive : ''}`}
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMenu}
               >
                 {link.label}
               </a>
