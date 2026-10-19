@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import AnimatedLogo from './AnimatedLogo'
-import { useTheme } from '../context/ThemeContext'
-import Icon from './Icon'
 import styles from './Header.module.css'
 
 const navLinks = [
@@ -17,7 +15,6 @@ const navLinks = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState('#home')
-  const { isDark, toggle } = useTheme()
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll('section[id]'))
@@ -27,16 +24,21 @@ export default function Header() {
       (entries) => {
         const visible = entries
           .filter(entry => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+          .sort((a, b) => {
+            const aDistance = Math.abs(a.target.getBoundingClientRect().top - 120)
+            const bDistance = Math.abs(b.target.getBoundingClientRect().top - 120)
+            return b.intersectionRatio - a.intersectionRatio || aDistance - bDistance
+          })
 
-        if (visible?.target?.id) {
-          setActive(`#${visible.target.id}`)
+        const nextSection = visible[0]
+        if (nextSection?.target?.id) {
+          setActive(`#${nextSection.target.id}`)
         }
       },
       {
         root: null,
-        rootMargin: '-18% 0px -58% 0px',
-        threshold: [0.15, 0.3, 0.5, 0.7],
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: [0, 0.15, 0.3, 0.5, 0.7, 1],
       }
     )
 
@@ -45,20 +47,39 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const mediaQuery = window.matchMedia('(min-width: 901px)')
-    const handleResize = () => {
+
+    const closeOnDesktop = () => {
       if (mediaQuery.matches) {
         setMenuOpen(false)
       }
     }
 
-    handleResize()
-    mediaQuery.addEventListener?.('change', handleResize)
+    closeOnDesktop()
 
-    return () => {
-      mediaQuery.removeEventListener?.('change', handleResize)
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', closeOnDesktop)
+      return () => mediaQuery.removeEventListener('change', closeOnDesktop)
     }
+
+    mediaQuery.addListener(closeOnDesktop)
+    return () => mediaQuery.removeListener(closeOnDesktop)
   }, [])
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -85,18 +106,6 @@ export default function Header() {
       </nav>
 
       <div className={styles.actions}>
-        <button
-          className={styles.themeBtn}
-          onClick={toggle}
-          aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-          type="button"
-        >
-          {isDark
-            ? <Icon name="bx bx-sun" className={styles.themeIcon} />
-            : <Icon name="bx bx-moon" className={styles.themeIcon} />
-          }
-        </button>
-
         <button
           className={`${styles.menuBtn} ${menuOpen ? styles.menuOpen : ''}`}
           onClick={() => setMenuOpen(p => !p)}
