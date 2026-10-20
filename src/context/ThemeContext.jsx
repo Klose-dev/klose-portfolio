@@ -24,8 +24,7 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', isDark)
-    document.body.dataset.themeTransition = transitionStyle
-  }, [isDark, transitionStyle])
+  }, [isDark])
 
   return (
     <ThemeContext.Provider value={{ isDark, toggle, transitionStyle }}>

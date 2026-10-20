@@ -15,15 +15,6 @@
   transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Solid header during theme transition to prevent transparency flash */
-body[data-theme-transition] .header {
-  background: var(--card-bg);
-  box-shadow: 0 4px 24px var(--shadow);
-}
-body[data-theme-transition] .header::before {
-  opacity: 0;
-}
-
 .navbar {
   display: flex;
   align-items: center;

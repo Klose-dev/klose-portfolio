@@ -9,6 +9,7 @@ import Services from './components/Services'
 import Skills from './components/Skills'
 import WhatsappFloatingButton from './components/WhatsappFloatingButton'
 import Loader from './components/Loader'
+import ThemeTransitionOverlay from './components/ThemeTransitionOverlay'
 
 const TechStackConvergence = lazy(() => import('./components/TechStackConvergence'))
 const CaseStudy = lazy(() => import('./components/CaseStudy'))
@@ -44,6 +45,7 @@ function App() {
           <Loader key="loader" />
         ) : (
           <>
+            <ThemeTransitionOverlay />
             <Header />
             <main>
               <Hero />
