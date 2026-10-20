@@ -144,7 +144,6 @@
   width: 1.25rem;
   height: 1.25rem;
   flex-shrink: 0;
-  color: var(--primary-mid);
 }
 
 .techName {
@@ -158,10 +157,6 @@
   border-color: var(--primary-mid);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px var(--surface-glow);
-}
-
-.techTag:hover .techIcon {
-  color: var(--deep-dark);
 }
 
 .techTagFallback {

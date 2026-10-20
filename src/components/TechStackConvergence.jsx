@@ -28,7 +28,7 @@ import styles from './TechStackConvergence.module.css'
 
 const techGroups = [
   {
-    key: 'frontend',
+    key: 'frameworks',
     technologies: [
       { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
       { name: 'CSS3', icon: SiCss, color: '#1572B6' },

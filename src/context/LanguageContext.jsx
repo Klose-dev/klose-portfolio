@@ -105,7 +105,7 @@ const translations = {
     skills: {
       heading: 'Skills',
       stackHeading: 'Stack',
-      categories: { frontend: 'Frontend', backend: 'Backend & Data', tools: 'Tools' },
+      categories: { frameworks: 'Frameworks', backend: 'Backend & Data', tools: 'Tools' },
     },
     particleShowcase: {
       heading: 'Ideas, in formation',
@@ -250,7 +250,7 @@ const translations = {
     skills: {
       heading: 'Compétences',
       stackHeading: 'Stack',
-      categories: { frontend: 'Frontend', backend: 'Backend & données', tools: 'Outils' },
+      categories: { frameworks: 'Frameworks', backend: 'Backend & données', tools: 'Outils' },
     },
     particleShowcase: {
       heading: 'Des idées en mouvement',
