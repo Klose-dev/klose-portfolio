@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import { SparkleParticles } from './SparkleParticles'
 import MagneticButton from './MagneticButton'
 import Icon from './Icon'
-import LaptopCode from './LaptopCode'
 import { useLanguage } from '../context/LanguageContext'
 import styles from './Hero.module.css'
 
@@ -183,7 +182,15 @@ export default function Hero() {
           initial="hidden"
           animate="show"
         >
-          <LaptopCode inView={true} />
+          <div className={styles.heroImageFrame}>
+            <img
+              src="/klose-k.jpeg"
+              alt="Portrait of Akongseh Klose"
+              className={`${styles.heroImage} ${styles.heroImageActive}`}
+              loading="lazy"
+            />
+            <div className={styles.heroImageOverlay} />
+          </div>
         </motion.div>
       </div>
     </section>
