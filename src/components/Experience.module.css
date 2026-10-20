@@ -23,6 +23,7 @@
 .item {
   position: relative;
   padding-bottom: 3rem;
+  transform-style: preserve-3d;
 }
 
 .item:last-child {
@@ -61,13 +62,13 @@
   border-radius: 1.2rem;
   padding: 2rem;
   box-shadow: 0 4px 20px var(--shadow);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
 }
 
 .content:hover {
   border-color: var(--surface-glow);
-  box-shadow: 0 8px 30px var(--shadow), 0 0 0 1px var(--surface-tint);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 40px var(--shadow), 0 0 0 1px var(--surface-tint);
 }
 
 .header {
@@ -126,20 +127,47 @@
 }
 
 .techTag {
-  font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--text-color);
   background: var(--surface-tint);
   border: 1px solid var(--surface-border);
-  padding: 0.4rem 0.85rem;
+  padding: 0.45rem 0.9rem;
   border-radius: 0.6rem;
   transition: all 0.2s ease;
+}
+
+.techIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  color: var(--primary-mid);
+}
+
+.techName {
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 .techTag:hover {
   background: var(--primary-mid);
   color: var(--deep-dark);
   border-color: var(--primary-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--surface-glow);
+}
+
+.techTag:hover .techIcon {
+  color: var(--deep-dark);
+}
+
+.techTagFallback {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
 }
 
 @media (max-width: 600px) {
@@ -182,13 +210,17 @@
   }
 
   .techTag {
-    font-size: 1.05rem;
-    padding: 0.35rem 0.75rem;
+    font-size: 1rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .techName {
+    font-size: 0.95rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .content:hover {
-    transform: none;
+  .item {
+    transform: none !important;
   }
 }

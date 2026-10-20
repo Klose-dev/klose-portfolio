@@ -57,23 +57,43 @@ const translations = {
         {
           role: 'Software Engineering Student',
           company: 'YIBS (Yam Institute of Business & Technology)',
-          period: '2023 — 2026',
+          period: '2023 — 2024',
           description: 'Full-stack development training with focus on React, PHP, Laravel, MySQL, and Python. Building real-world projects including AI-powered attendance systems, blockchain marketplaces, and admin dashboards.',
-          technologies: ['React', 'PHP', 'Laravel', 'MySQL', 'Python', 'JavaScript'],
+          technologies: [
+            { name: 'React', icon: 'SiReact' },
+            { name: 'PHP', icon: 'SiPhp' },
+            { name: 'Laravel', icon: 'SiLaravel' },
+            { name: 'MySQL', icon: 'SiMysql' },
+            { name: 'Python', icon: 'SiPython' },
+            { name: 'JavaScript', icon: 'SiJavascript' }
+          ],
         },
         {
           role: 'Freelance Web Developer',
           company: 'Self-employed',
-          period: '2023 — 2026',
+          period: '2024 — 2025',
           description: 'Building custom websites and web applications for clients. Delivered e-commerce stores, admin dashboards, blog platforms, and REST APIs with clean, maintainable code.',
-          technologies: ['React', 'PHP', 'Laravel', 'JavaScript', 'HTML/CSS', 'MySQL'],
+          technologies: [
+            { name: 'React', icon: 'SiReact' },
+            { name: 'PHP', icon: 'SiPhp' },
+            { name: 'Laravel', icon: 'SiLaravel' },
+            { name: 'JavaScript', icon: 'SiJavascript' },
+            { name: 'HTML/CSS', icon: 'SiHtml5' },
+            { name: 'MySQL', icon: 'SiMysql' }
+          ],
         },
         {
           role: 'Intern / Junior Developer',
           company: 'Digimark Consulting',
-          period: '2023 — 2026',
+          period: '2025 — 2026',
           description: 'Contributed to client projects including face recognition attendance systems and AI chatbots. Gained experience in full development lifecycle from requirements to deployment.',
-          technologies: ['Python', 'OpenCV', 'React', 'REST APIs', 'PostgreSQL'],
+          technologies: [
+            { name: 'Python', icon: 'SiPython' },
+            { name: 'OpenCV', icon: 'SiOpencv' },
+            { name: 'React', icon: 'SiReact' },
+            { name: 'REST APIs', icon: 'SiPostman' },
+            { name: 'PostgreSQL', icon: 'SiPostgresql' }
+          ],
         },
       ],
     },
@@ -182,23 +202,43 @@ const translations = {
         {
           role: 'Étudiant en Ingénierie Logicielle',
           company: 'YIBS (Yam Institute of Business & Technology)',
-          period: '2023 — 2026',
+          period: '2023 — 2024',
           description: 'Formation full-stack avec focus sur React, PHP, Laravel, MySQL et Python. Création de projets réels incluant systèmes de présence par IA, marketplaces blockchain et tableaux de bord admin.',
-          technologies: ['React', 'PHP', 'Laravel', 'MySQL', 'Python', 'JavaScript'],
+          technologies: [
+            { name: 'React', icon: 'SiReact' },
+            { name: 'PHP', icon: 'SiPhp' },
+            { name: 'Laravel', icon: 'SiLaravel' },
+            { name: 'MySQL', icon: 'SiMysql' },
+            { name: 'Python', icon: 'SiPython' },
+            { name: 'JavaScript', icon: 'SiJavascript' }
+          ],
         },
         {
           role: 'Développeur Web Freelance',
           company: 'Indépendant',
-          period: '2023 — 2026',
+          period: '2024 — 2025',
           description: 'Création de sites et applications web sur mesure pour clients. Livraison de boutiques e-commerce, tableaux de bord admin, plateformes de blog et API REST avec code propre et maintenable.',
-          technologies: ['React', 'PHP', 'Laravel', 'JavaScript', 'HTML/CSS', 'MySQL'],
+          technologies: [
+            { name: 'React', icon: 'SiReact' },
+            { name: 'PHP', icon: 'SiPhp' },
+            { name: 'Laravel', icon: 'SiLaravel' },
+            { name: 'JavaScript', icon: 'SiJavascript' },
+            { name: 'HTML/CSS', icon: 'SiHtml5' },
+            { name: 'MySQL', icon: 'SiMysql' }
+          ],
         },
         {
           role: 'Stagiaire / Développeur Junior',
           company: 'Digimark Consulting',
-          period: '2023 — 2026',
+          period: '2025 — 2026',
           description: 'Contribution à des projets clients incluant systèmes de présence par reconnaissance faciale et chatbots IA. Expérience du cycle de développement complet, des exigences au déploiement.',
-          technologies: ['Python', 'OpenCV', 'React', 'REST APIs', 'PostgreSQL'],
+          technologies: [
+            { name: 'Python', icon: 'SiPython' },
+            { name: 'OpenCV', icon: 'SiOpencv' },
+            { name: 'React', icon: 'SiReact' },
+            { name: 'REST APIs', icon: 'SiPostman' },
+            { name: 'PostgreSQL', icon: 'SiPostgresql' }
+          ],
         },
       ],
     },
