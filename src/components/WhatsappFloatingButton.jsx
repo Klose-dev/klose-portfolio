@@ -4,10 +4,14 @@ import Icon from './Icon'
 import { useLanguage } from '../context/LanguageContext'
 import styles from './WhatsappFloatingButton.module.css'
 
+const PHONE_NUMBER = '237671313884'
+
 export default function WhatsappFloatingButton() {
   const wrapperRef = useRef(null)
   const inView = useInView(wrapperRef, { once: true, margin: '-200px' })
   const { t } = useLanguage()
+
+  const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(t('whatsapp.message'))}`
 
   return (
     <motion.div
@@ -17,7 +21,9 @@ export default function WhatsappFloatingButton() {
       transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
     >
       <motion.a
-        href="#contact"
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className={styles.button}
         aria-label={t('whatsapp.aria')}
         title={t('whatsapp.title')}

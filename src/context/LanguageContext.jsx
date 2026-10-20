@@ -158,7 +158,7 @@ const translations = {
       ],
       builtWith: 'Built with:', liveDemo: 'Live Demo', viewCode: 'View Code',
     },
-    whatsapp: { label: 'WhatsApp', aria: 'Jump to contact form', title: 'Contact via WhatsApp' },
+    whatsapp: { label: 'WhatsApp', aria: 'Open WhatsApp', title: 'Contact via WhatsApp', message: 'Hello! I\'m interested in working with you. Let\'s discuss my project.' },
     testimonials: {
       heading: 'What People', accent: 'Say',
       entries: [
@@ -302,7 +302,7 @@ const translations = {
       ],
       builtWith: 'Développé avec :', liveDemo: 'Démo en direct', viewCode: 'Voir le code',
     },
-    whatsapp: { label: 'WhatsApp', aria: 'Accéder au formulaire de contact', title: 'Contacter via WhatsApp' },
+    whatsapp: { label: 'WhatsApp', aria: 'Ouvrir WhatsApp', title: 'Contacter via WhatsApp', message: 'Bonjour ! Je suis intéressé par une collaboration. Discutons de mon projet.' },
     testimonials: {
       heading: 'Ce que les gens', accent: 'disent',
       entries: [
