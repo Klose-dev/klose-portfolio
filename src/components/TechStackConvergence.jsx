@@ -106,7 +106,7 @@ function TechCard({ tech, isDark }) {
   )
 }
 
-function TechGroup({ group, isDark, inView }) {
+function TechGroup({ group, isDark, inView, t }) {
   return (
     <motion.div className={styles.group} variants={groupVariants} initial="hidden" animate={inView ? 'show' : 'hidden'}>
       <motion.h3
@@ -145,7 +145,7 @@ export default function TechStackConvergence() {
 
       <div className={styles.groups}>
         {techGroups.map(group => (
-          <TechGroup key={group.key} group={group} isDark={isDark} inView={inView} />
+          <TechGroup key={group.key} group={group} isDark={isDark} inView={inView} t={t} />
         ))}
       </div>
     </section>

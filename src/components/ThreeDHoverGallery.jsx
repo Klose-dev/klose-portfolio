@@ -6,8 +6,8 @@ const cn = (...classes) => classes.filter(Boolean).join(' ')
 
 const ThreeDHoverGallery = ({
   images = [
-    '/images/image%206.jpeg',
-    '/images/img.jpeg',
+    'https://images.unsplash.com/photo-1688561807381-05137151978f?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1686061592689-312bbfb5c055?auto=format&fit=crop&w=1600&q=80',
   ],
   itemWidth = 12,
   itemHeight = 20,
@@ -166,36 +166,39 @@ const ThreeDHoverGallery = ({
       animate={inView ? { opacity: 1 } : {}}
       transition={{ duration: 0.5 }}
     >
-      <motion.div
+      <div
         className={styles.galleryViewport}
         ref={containerRef}
         style={{ perspective: `calc(${perspective}vw + ${perspective}vh)`, gap: `${gap}rem` }}
-        variants={{ show: { transition: { staggerChildren: 0.15 } } }}
-        initial="hidden"
-        animate={inView ? 'show' : 'hidden'}
       >
-        {images.map((image, index) => (
-          <motion.div
-            key={index}
-            className={styles.galleryItem}
-            style={getItemStyle(index)}
-            tabIndex={enableKeyboardNavigation ? 0 : -1}
-            onClick={() => handleImageClick(index, image)}
-            onMouseEnter={() => handleImageHover(index, image)}
-            onMouseLeave={handleImageLeave}
-            onFocus={() => handleImageFocus(index, image)}
-            onBlur={() => setFocusedIndex(null)}
-            onKeyDown={(e) => handleKeyDown(e, index)}
-            role="button"
-            aria-label={`Image ${index + 1} of ${images.length}`}
-            aria-pressed={activeIndex === index}
-            variants={itemVariants}
-            custom={index}
-            whileHover={{ scale: 1.02, zIndex: 10 }}
-            whileTap={{ scale: 0.98 }}
-          />
-        ))}
-      </motion.div>
+        <motion.div
+          variants={{ show: { transition: { staggerChildren: 0.15 } } }}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+        >
+          {images.map((image, index) => (
+            <motion.div
+              key={index}
+              className={styles.galleryItem}
+              style={getItemStyle(index)}
+              tabIndex={enableKeyboardNavigation ? 0 : -1}
+              onClick={() => handleImageClick(index, image)}
+              onMouseEnter={() => handleImageHover(index, image)}
+              onMouseLeave={handleImageLeave}
+              onFocus={() => handleImageFocus(index, image)}
+              onBlur={() => setFocusedIndex(null)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              role="button"
+              aria-label={`Image ${index + 1} of ${images.length}`}
+              aria-pressed={activeIndex === index}
+              variants={itemVariants}
+              custom={index}
+              whileHover={{ scale: 1.02, zIndex: 10 }}
+              whileTap={{ scale: 0.98 }}
+            />
+          ))}
+        </motion.div>
+      </div>
     </motion.div>
   )
 }
