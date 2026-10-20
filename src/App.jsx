@@ -11,6 +11,7 @@ import WhatsappFloatingButton from './components/WhatsappFloatingButton'
 import Loader from './components/Loader'
 import ThemeTransitionOverlay from './components/ThemeTransitionOverlay'
 
+const Experience = lazy(() => import('./components/Experience'))
 const TechStackConvergence = lazy(() => import('./components/TechStackConvergence'))
 const CaseStudy = lazy(() => import('./components/CaseStudy'))
 const Portfolio = lazy(() => import('./components/Portfolio'))
@@ -50,6 +51,9 @@ function App() {
             <main>
               <Hero />
               <About />
+              <Suspense fallback={null}>
+                <Experience />
+              </Suspense>
               <Services />
               <Skills />
               <Suspense fallback={null}>

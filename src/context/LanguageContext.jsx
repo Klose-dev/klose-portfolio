@@ -51,6 +51,32 @@ const translations = {
       bio: 'With a strong foundation in both front end and backend development, I craft digital products that are not only visually stunning but also performant and user centric. I am constantly learning, building, and pushing boundaries in the world of web development.',
       name: 'Name', location: 'Location', freelance: 'Freelance', available: 'Available', experience: 'Years Experience', download: 'Download CV',
     },
+    experience: {
+      heading: 'My', accent: 'Experience',
+      items: [
+        {
+          role: 'Software Engineering Student',
+          company: 'YIBS (Yam Institute of Business & Technology)',
+          period: '2022 — Present',
+          description: 'Full-stack development training with focus on React, PHP, Laravel, MySQL, and Python. Building real-world projects including AI-powered attendance systems, blockchain marketplaces, and admin dashboards.',
+          technologies: ['React', 'PHP', 'Laravel', 'MySQL', 'Python', 'JavaScript'],
+        },
+        {
+          role: 'Freelance Web Developer',
+          company: 'Self-employed',
+          period: '2021 — Present',
+          description: 'Building custom websites and web applications for clients. Delivered e-commerce stores, admin dashboards, blog platforms, and REST APIs with clean, maintainable code.',
+          technologies: ['React', 'PHP', 'Laravel', 'JavaScript', 'HTML/CSS', 'MySQL'],
+        },
+        {
+          role: 'Intern / Junior Developer',
+          company: 'Digimark Consulting',
+          period: '2023 — 2024',
+          description: 'Contributed to client projects including face recognition attendance systems and AI chatbots. Gained experience in full development lifecycle from requirements to deployment.',
+          technologies: ['Python', 'OpenCV', 'React', 'REST APIs', 'PostgreSQL'],
+        },
+      ],
+    },
     services: {
       heading: 'My', accent: 'Services', webTitle: 'Web Development', webDesc: 'Building robust, scalable web applications using modern technologies like React, PHP, Laravel and MySQL with clean, maintainable code architecture.',
       maintenanceTitle: 'Website Maintenance', maintenanceDesc: 'Keeping your web presence optimized, secure, and up to date. From bug fixes to performance enhancements and regular content updates.',
@@ -149,6 +175,32 @@ const translations = {
       intro: 'Je suis Akongseh Klose, un étudiant passionné en ingénierie logicielle qui aime transformer les idées en expériences web élégantes et fonctionnelles.',
       bio: 'Avec de solides bases en développement frontend et backend, je crée des produits numériques aussi beaux que performants et centrés sur l’utilisateur. J’apprends, je construis et je repousse constamment les limites du développement web.',
       name: 'Nom', location: 'Localisation', freelance: 'Freelance', available: 'Disponible', experience: "Années d'expérience", download: 'Télécharger le CV',
+    },
+    experience: {
+      heading: 'Mon', accent: 'Parcours',
+      items: [
+        {
+          role: 'Étudiant en Ingénierie Logicielle',
+          company: 'YIBS (Yam Institute of Business & Technology)',
+          period: '2022 — Présent',
+          description: 'Formation full-stack avec focus sur React, PHP, Laravel, MySQL et Python. Création de projets réels incluant systèmes de présence par IA, marketplaces blockchain et tableaux de bord admin.',
+          technologies: ['React', 'PHP', 'Laravel', 'MySQL', 'Python', 'JavaScript'],
+        },
+        {
+          role: 'Développeur Web Freelance',
+          company: 'Indépendant',
+          period: '2021 — Présent',
+          description: 'Création de sites et applications web sur mesure pour clients. Livraison de boutiques e-commerce, tableaux de bord admin, plateformes de blog et API REST avec code propre et maintenable.',
+          technologies: ['React', 'PHP', 'Laravel', 'JavaScript', 'HTML/CSS', 'MySQL'],
+        },
+        {
+          role: 'Stagiaire / Développeur Junior',
+          company: 'Digimark Consulting',
+          period: '2023 — 2024',
+          description: 'Contribution à des projets clients incluant systèmes de présence par reconnaissance faciale et chatbots IA. Expérience du cycle de développement complet, des exigences au déploiement.',
+          technologies: ['Python', 'OpenCV', 'React', 'REST APIs', 'PostgreSQL'],
+        },
+      ],
     },
     services: {
       heading: 'Mes', accent: 'Services', webTitle: 'Développement web', webDesc: 'Création d’applications web robustes et évolutives avec React, PHP, Laravel et MySQL, dans une architecture de code propre et maintenable.',
