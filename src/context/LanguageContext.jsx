@@ -38,15 +38,12 @@ const translations = {
       loadingPortfolio: 'Loading portfolio',
     },
     hero: {
-      availability: 'Available for work', greeting: 'Hello, I am',
-      paragraphs: [
-        'A passionate web developer who loves creating beautiful and functional digital experiences with innovation.',
-        'Specializing in modern web technologies and user centered design solutions.',
-        'Building responsive applications that combine creativity with cutting edge technology.',
-        'Transforming ideas into interactive digital realities through code and design.',
-      ],
-      stats: ['Featured Projects', 'Core Roles', 'Technologies Used'],
-      projects: 'Featured Projects', roles: 'Core Roles', technologies: 'Technologies Used', download: 'Download CV', viewProjects: 'View Projects',
+      availability: 'Available for work',
+      greeting: '',
+      headline: 'From Real-World Problems to Working Software.',
+      description: 'I explore problems, design practical solutions, and build digital products that can grow beyond their first users.',
+      stats: ['Featured Projects', 'Technologies Used'],
+      projects: 'Featured Projects', technologies: 'Technologies Used', download: 'Download CV', viewProjects: 'View Projects',
     },
     about: {
       heading: 'About', accent: 'Me', tag: 'Full Stack Developer',
@@ -140,15 +137,12 @@ const translations = {
       loadingPortfolio: 'Chargement du portfolio',
     },
     hero: {
-      availability: 'Disponible pour travailler', greeting: 'Bonjour, je suis',
-      paragraphs: [
-        'Un développeur web passionné qui aime créer des expériences numériques belles et fonctionnelles avec innovation.',
-        'Spécialisé dans les technologies web modernes et les solutions de conception centrées sur l’utilisateur.',
-        'Je crée des applications réactives qui combinent créativité et technologies de pointe.',
-        'Je transforme les idées en expériences numériques interactives grâce au code et au design.',
-      ],
-      stats: ['Projets présentés', 'Rôles clés', 'Technologies utilisées'],
-      projects: 'Projets présentés', roles: 'Rôles clés', technologies: 'Technologies utilisées', download: 'Télécharger le CV', viewProjects: 'Voir les projets',
+      availability: 'Disponible pour travailler',
+      greeting: '',
+      headline: 'Des problèmes réels aux logiciels fonctionnels.',
+      description: "J'explore les problèmes, conçois des solutions pratiques et crée des produits numériques qui peuvent grandir au-delà de leurs premiers utilisateurs.",
+      stats: ['Projets présentés', 'Technologies utilisées'],
+      projects: 'Projets présentés', technologies: 'Technologies utilisées', download: 'Télécharger le CV', viewProjects: 'Voir les projets',
     },
     about: {
       heading: 'À', accent: 'propos', tag: 'Développeur full stack',

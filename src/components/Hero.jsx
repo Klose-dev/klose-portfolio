@@ -1,35 +1,29 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { SparkleParticles } from './SparkleParticles'
-import TextGenerateEffect from './TextGenerateEffect'
 import MagneticButton from './MagneticButton'
 import Icon from './Icon'
 import { useLanguage } from '../context/LanguageContext'
 import styles from './Hero.module.css'
 
 const socials = [
-  { icon: 'bx bxl-facebook',       href: '#' },
-  { icon: 'bx bxl-twitter',        href: '#' },
-  { icon: 'bx bxl-instagram-alt',  href: '#' },
-  { icon: 'fab fa-github',         href: '#' },
-  { icon: 'fab fa-telegram',       href: '#' },
-  { icon: 'fab fa-whatsapp',       href: '#' },
-  { icon: 'bx bxl-linkedin',       href: '#' },
+  { icon: 'fab fa-github',         href: '#', label: 'GitHub' },
+  { icon: 'bx bxl-linkedin',       href: '#', label: 'LinkedIn' },
+  { icon: 'fab fa-whatsapp',       href: '#', label: 'WhatsApp' },
 ]
 
 const stats = [
-  { value: 6, suffix: '+', icon: 'bx bx-check-circle' },
-  { value: 4, suffix: '+', icon: 'bx bx-user' },
-  { value: 10, suffix: '+', icon: 'bx bx-code-alt' },
+  { value: 6, suffix: '+', label: 'Featured Projects' },
+  { value: 10, suffix: '+', label: 'Technologies Used' },
 ]
 
 const fadeLeft = {
-  hidden: { x: -60, opacity: 0 },
-  show: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+  hidden: { x: -40, opacity: 0 },
+  show: { x: 0, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } },
 }
 const fadeRight = {
-  hidden: { x: 60, opacity: 0 },
-  show: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+  hidden: { x: 40, opacity: 0 },
+  show: { x: 0, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } },
 }
 
 function CountUp({ end, suffix = '' }) {
@@ -104,50 +98,41 @@ export default function Hero() {
             <span>{t('hero.availability')}</span>
           </motion.div>
 
-          <motion.h3
-            className={styles.greeting}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            {t('hero.greeting')}
-          </motion.h3>
-
           <motion.h1
             className={styles.name}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.7 }}
           >
             Akongseh <span className={styles.nameHighlight}>Klose</span>
           </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
+          <motion.h2
+            className={styles.headline}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.7 }}
           >
-            <TextGenerateEffect
-              words={t('hero.paragraphs')}
-              textClassName={styles.heroParagraph}
-              duration={0.4}
-              filter={true}
-              loop={true}
-              loopDelay={3500}
-            />
-          </motion.div>
+            {t('hero.headline')}
+          </motion.h2>
+
+          <motion.p
+            className={styles.description}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.7 }}
+          >
+            {t('hero.description')}
+          </motion.p>
 
           <motion.div
             className={styles.statsStrip}
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.05, duration: 0.6 }}
+            transition={{ delay: 0.85, duration: 0.6 }}
           >
             {stats.map((stat, index) => (
               <div key={index} className={styles.statCard}>
-                <div className={styles.statIconWrap} aria-hidden="true">
-                  <Icon name={stat.icon} className={styles.statIcon} />
-                </div>
                 <div className={styles.statCopy}>
                   <span className={styles.statValue}>
                     <CountUp end={stat.value} suffix={stat.suffix} />
@@ -162,10 +147,15 @@ export default function Hero() {
             className={styles.socials}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
+            transition={{ delay: 1.0, duration: 0.6 }}
           >
             {socials.map((social, index) => (
-              <a key={index} href={social.href} className={styles.socialIcon}>
+              <a
+                key={index}
+                href={social.href}
+                className={styles.socialIcon}
+                aria-label={social.label}
+              >
                 <Icon name={social.icon} className={styles.socialIconSvg} />
               </a>
             ))}
@@ -175,13 +165,13 @@ export default function Hero() {
             className={styles.ctas}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
+            transition={{ delay: 1.15, duration: 0.6 }}
           >
-            <MagneticButton variant="solid" className={styles.heroSolidBtn}>
-              <Icon name="bx bx-download" className={styles.buttonIcon} /> {t('hero.download')}
+            <MagneticButton variant="solid" className={styles.heroPrimaryBtn}>
+              <Icon name="bx bx-folder-open" className={styles.buttonIcon} /> {t('hero.viewProjects')}
             </MagneticButton>
-            <MagneticButton variant="glass" className={styles.heroGlassBtn}>
-              {t('hero.viewProjects')}
+            <MagneticButton variant="glass" className={styles.heroSecondaryBtn}>
+              <Icon name="bx bx-download" className={styles.buttonIcon} /> {t('hero.download')}
             </MagneticButton>
           </motion.div>
         </motion.div>
