@@ -28,7 +28,7 @@ function TechIcon({ iconName }) {
 
   if (!Icon) return <span className={styles.techTagFallback}>&nbsp;</span>
 
-  return <Icon className={styles.techIcon} aria-hidden="true" style={{ width: '1.25rem', height: '1.25rem', flexShrink: 0, color: 'inherit' }} />
+  return <Icon className={styles.techIcon} aria-hidden="true" style={{ width: '1.25rem', height: '1.25rem', flexShrink: 0 }} />
 }
 
 function ExperienceCard({ item, index, inView }) {
