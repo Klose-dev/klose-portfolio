@@ -11,19 +11,17 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  z-index: 1000;
-  transition: background 0.4s ease, border-color 0.4s ease;
+  z-index: 10000;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.header::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary-mid), transparent);
-  opacity: 0.4;
+/* Solid header during theme transition to prevent transparency flash */
+body[data-theme-transition] .header {
+  background: var(--card-bg);
+  box-shadow: 0 4px 24px var(--shadow);
+}
+body[data-theme-transition] .header::before {
+  opacity: 0;
 }
 
 .navbar {
