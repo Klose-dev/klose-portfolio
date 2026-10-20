@@ -20,6 +20,8 @@ import {
   SiCssmodules,
 } from 'react-icons/si'
 import { VscVscode } from 'react-icons/vsc'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 import styles from './TechStackConvergence.module.css'
@@ -62,38 +64,88 @@ const techGroups = [
   },
 ]
 
+const cardVariants = {
+  hidden: { y: 30, opacity: 0, scale: 0.9 },
+  show: (i) => ({
+    y: 0,
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, delay: i * 0.04, ease: 'easeOut' },
+  }),
+}
+
+const groupVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, staggerChildren: 0.04, delayChildren: 0.1 },
+  },
+}
+
+function TechCard({ tech, isDark }) {
+  const Icon = tech.icon
+  const iconColor = tech.darkColor && isDark
+    ? tech.darkColor
+    : tech.color === '#FFFFFF' || tech.color === '#F1F5F9'
+      ? 'var(--text-color)'
+      : tech.color
+
+  return (
+    <motion.li
+      className={styles.card}
+      variants={cardVariants}
+      whileHover={{ y: -4, scale: 1.02, transition: { duration: 0.2 } }}
+      whileTap={{ scale: 0.96 }}
+    >
+      <span className={styles.iconTile} aria-hidden="true">
+        <Icon className={styles.techIcon} style={{ color: iconColor }} />
+      </span>
+      <span className={styles.techName}>{tech.name}</span>
+    </motion.li>
+  )
+}
+
+function TechGroup({ group, isDark, inView }) {
+  return (
+    <motion.div className={styles.group} variants={groupVariants} initial="hidden" animate={inView ? 'show' : 'hidden'}>
+      <motion.h3
+        className={styles.groupTitle}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {t(`skills.categories.${group.key}`)}
+      </motion.h3>
+      <motion.ul className={styles.grid} variants={{ show: { transition: { staggerChildren: 0.04 } } }}>
+        {group.technologies.map(tech => (
+          <TechCard key={tech.name} tech={tech} isDark={isDark} />
+        ))}
+      </motion.ul>
+    </motion.div>
+  )
+}
+
 export default function TechStackConvergence() {
   const { t } = useLanguage()
   const { isDark } = useTheme()
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section className={styles.section} id="tech-stack">
-      <h2 className="heading">{t('skills.stackHeading')}</h2>
+    <section className={styles.section} id="tech-stack" ref={ref}>
+      <motion.h2
+        className="heading"
+        initial={{ y: 30, opacity: 0 }}
+        animate={inView ? { y: 0, opacity: 1 } : {}}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        {t('skills.stackHeading')}
+      </motion.h2>
 
       <div className={styles.groups}>
         {techGroups.map(group => (
-          <div className={styles.group} key={group.key}>
-            <h3 className={styles.groupTitle}>{t(`skills.categories.${group.key}`)}</h3>
-            <ul className={styles.grid}>
-              {group.technologies.map(tech => {
-                const Icon = tech.icon
-                const iconColor = tech.darkColor && isDark
-                  ? tech.darkColor
-                  : tech.color === '#FFFFFF' || tech.color === '#F1F5F9'
-                    ? 'var(--text-color)'
-                    : tech.color
-
-                return (
-                  <li className={styles.card} key={tech.name}>
-                    <span className={styles.iconTile} aria-hidden="true">
-                      <Icon className={styles.techIcon} style={{ color: iconColor }} />
-                    </span>
-                    <span className={styles.techName}>{tech.name}</span>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
+          <TechGroup key={group.key} group={group} isDark={isDark} inView={inView} />
         ))}
       </div>
     </section>

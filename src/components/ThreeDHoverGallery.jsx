@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
 import styles from './ThreeDHoverGallery.module.css'
 
 const cn = (...classes) => classes.filter(Boolean).join(' ')
@@ -31,6 +32,8 @@ const ThreeDHoverGallery = ({
   const [activeIndex, setActiveIndex] = useState(null)
   const [focusedIndex, setFocusedIndex] = useState(null)
   const autoPlayRef = useRef(null)
+  const galleryRef = useRef(null)
+  const inView = useInView(galleryRef, { once: true, margin: '-100px' })
 
   useEffect(() => {
     if (autoPlay && images.length > 0) {
@@ -114,7 +117,7 @@ const ThreeDHoverGallery = ({
     const isActive = activeIndex === index
     const isFocused = focusedIndex === index
     const baseWidthPx = 10
-    const defaultZoom = 1.3 // Start zoomed in
+    const defaultZoom = 1.3
 
     return {
       width: `calc(${itemWidth}vw + ${baseWidthPx}px)`,
@@ -127,8 +130,8 @@ const ThreeDHoverGallery = ({
       backgroundColor,
       cursor: 'pointer',
       filter: isActive || isFocused ? 'inherit' : `grayscale(${grayscaleStrength}) brightness(${brightnessLevel})`,
-      transform: isActive 
-        ? `perspective(${perspective}px) rotateY(0deg) scale(1) translateZ(0)` 
+      transform: isActive
+        ? `perspective(${perspective}px) rotateY(0deg) scale(1) translateZ(0)`
         : `scale(${defaultZoom})`,
       transition: `transform ${transitionDuration}s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.8s ease, width ${transitionDuration}s cubic-bezier(0.34, 1.56, 0.64, 1)`,
       willChange: 'transform, filter, width',
@@ -144,14 +147,35 @@ const ThreeDHoverGallery = ({
     }
   }
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    show: (i) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.7, delay: i * 0.15, ease: [0.34, 1.56, 0.64, 1] },
+    }),
+  }
+
   return (
-    <div
+    <motion.div
+      ref={galleryRef}
       className={cn(styles.galleryWrap, className)}
       style={backgroundColor ? { backgroundColor, ...style } : style}
+      initial={{ opacity: 0 }}
+      animate={inView ? { opacity: 1 } : {}}
+      transition={{ duration: 0.5 }}
     >
-      <div className={styles.galleryViewport} ref={containerRef} style={{ perspective: `calc(${perspective}vw + ${perspective}vh)`, gap: `${gap}rem` }}>
+      <motion.div
+        className={styles.galleryViewport}
+        ref={containerRef}
+        style={{ perspective: `calc(${perspective}vw + ${perspective}vh)`, gap: `${gap}rem` }}
+        variants={{ show: { transition: { staggerChildren: 0.15 } } }}
+        initial="hidden"
+        animate={inView ? 'show' : 'hidden'}
+      >
         {images.map((image, index) => (
-          <div
+          <motion.div
             key={index}
             className={styles.galleryItem}
             style={getItemStyle(index)}
@@ -165,10 +189,14 @@ const ThreeDHoverGallery = ({
             role="button"
             aria-label={`Image ${index + 1} of ${images.length}`}
             aria-pressed={activeIndex === index}
+            variants={itemVariants}
+            custom={index}
+            whileHover={{ scale: 1.02, zIndex: 10 }}
+            whileTap={{ scale: 0.98 }}
           />
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
