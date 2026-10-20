@@ -1,82 +1,92 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import TextGenerateEffect from './TextGenerateEffect'
 import MagneticButton from './MagneticButton'
 import Icon from './Icon'
 import { useLanguage } from '../context/LanguageContext'
 import styles from './About.module.css'
 
-const fadeIn = (dir = 'left', delay = 0) => ({
-  hidden: { x: dir === 'left' ? -60 : 60, opacity: 0 },
-  show:   { x: 0, opacity: 1, transition: { duration: 0.8, delay, ease: 'easeOut' } },
-})
+const fadeUp = {
+  hidden: { y: 40, opacity: 0 },
+  show: { y: 0, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } },
+}
+
+const fadeRight = {
+  hidden: { x: 40, opacity: 0 },
+  show: { x: 0, opacity: 1, transition: { duration: 0.7, delay: 0.15, ease: 'easeOut' } },
+}
 
 export default function About() {
-  const ref   = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
   const { t } = useLanguage()
+
+  const paragraphs = t('about.paragraphs')
+  const coreIdentityTags = t('about.coreIdentityTags')
 
   return (
     <section className={styles.about} id="about" ref={ref}>
-      <h2 className="heading">
-        {t('about.heading')} <span>{t('about.accent')}</span>
-      </h2>
-
       <div className={styles.container}>
-        {/* Image */}
+        {/* Left Column - Visual */}
         <motion.div
-          className={styles.imgWrap}
-          variants={fadeIn('left')}
+          className={styles.visual}
+          variants={fadeUp}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          <div className={styles.imgBox}>
-            <img src="/klose-k.jpeg" alt="Portrait of Akongseh Klose" />
-            <div className={styles.imgOverlay} />
-          </div>
-          <div className={styles.expBadge}>
-            <span className={styles.expNum}>3+</span>
-            <span className={styles.expLabel}>{t('about.experience')}</span>
-          </div>
+          <div className={styles.visualInner} />
         </motion.div>
 
-        {/* Content */}
+        {/* Right Column - Content */}
         <motion.div
           className={styles.content}
-          variants={fadeIn('right', 0.2)}
+          variants={fadeRight}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          <div className={styles.tag}>{t('about.tag')}</div>
+          <motion.h2
+            className={styles.heading}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+          >
+            {t('about.heading')} <span>{t('about.accent')}</span>
+          </motion.h2>
 
-          {inView && (
-            <TextGenerateEffect
-              words={t('about.intro')}
-              duration={0.4}
-              filter={true}
-            />
-          )}
+          <div className={styles.underline} aria-hidden="true" />
 
-          <p className={styles.bio}>
-            {t('about.bio')}
-          </p>
+          <motion.p
+            className={styles.paragraph}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
+          >
+            {paragraphs[0]}
+          </motion.p>
 
-          <div className={styles.info}>
-            {[
-              { label: t('about.name'),       val: 'Akongseh Klose' },
-              { label: t('about.location'),   val: 'Yaoundé, Cameroon' },
-              { label: t('about.freelance'),  val: t('about.available') },
-            ].map(({ label, val }) => (
-              <div key={label} className={styles.infoItem}>
-                <span className={styles.infoLabel}>{label}:</span>
-                <span className={styles.infoVal}>{val}</span>
-              </div>
-            ))}
-          </div>
+          <motion.p
+            className={styles.paragraph}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
+          >
+            {paragraphs[1]}
+          </motion.p>
 
-          <MagneticButton variant="solid">
-            <Icon name="bx bx-download" className={styles.buttonIcon} /> {t('about.download')}
-          </MagneticButton>
+          <motion.div
+            className={styles.coreIdentity}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.45, ease: 'easeOut' }}
+          >
+            <span className={styles.coreIdentityLabel}>{t('about.coreIdentityLabel')}</span>
+            <div className={styles.tags}>
+              {coreIdentityTags.map((tag, index) => (
+                <span key={index} className={styles.tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

@@ -1,114 +1,207 @@
 .about {
-  background: linear-gradient(180deg, var(--bg-color) 0%, var(--surface-tint) 100%);
+  background: var(--bg-color);
+  position: relative;
 }
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  align-items: center;
-  gap: 6rem;
+  grid-template-columns: 38% 62%;
+  align-items: start;
+  gap: 5rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 8rem 0;
 }
 
-/* ── Image ── */
-.imgWrap { position: relative; }
-
-.imgBox {
+.visual {
   position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: 2rem;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 60%, var(--accent-light) 100%);
-  box-shadow: 0 2rem 5rem var(--shadow-dark);
-}
-
-.imgBox img {
-  width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  min-height: 480px;
 }
 
-.imgOverlay {
+.visualInner {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.62) 0%, transparent 60%);
+  background:
+    linear-gradient(135deg, var(--surface-tint-strong) 0%, var(--surface-tint) 40%, transparent 70%),
+    radial-gradient(ellipse at 30% 20%, var(--surface-tint-strong) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, var(--surface-tint-strong) 0%, transparent 50%);
+  border-radius: 1.5rem;
+  border: 1px solid var(--surface-border);
 }
 
-.expBadge {
+.visualInner::before {
+  content: '';
   position: absolute;
-  bottom: -2rem;
-  right: -2rem;
+  inset: 2rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 0.75rem;
+  opacity: 0.5;
+}
+
+.visualInner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid var(--surface-border);
+  opacity: 0.3;
+  background: radial-gradient(circle at center, var(--primary-mid) 0%, transparent 70%);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1.5rem;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+  margin: 0;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.heading span {
+  color: var(--primary-mid);
+}
+
+.underline {
+  width: 60px;
+  height: 3px;
   background: var(--primary-mid);
-  color: var(--deep-dark);
-  padding: 1.8rem 2.2rem;
-  border-radius: 1.2rem;
-  text-align: center;
-  box-shadow: 0 0.8rem 2rem var(--surface-glow);
+  border-radius: 2px;
+  margin-top: -0.75rem;
 }
 
-.expNum {
-  display: block;
-  font-size: 3.6rem;
-  font-weight: 800;
-  line-height: 1;
+.paragraph {
+  font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 54ch;
 }
 
-.expLabel {
-  font-size: 1.3rem;
-  font-weight: 500;
-  line-height: 1.3;
+.coreIdentity {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
-/* ── Content ── */
-.content { display: flex; flex-direction: column; gap: 2rem; }
+.coreIdentityLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
 
 .tag {
-  display: inline-block;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--primary-mid);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-color);
   background: var(--surface-tint);
   border: 1px solid var(--surface-border);
-  padding: 0.5rem 1.4rem;
-  border-radius: 99px;
-  width: fit-content;
+  border-radius: 999px;
+  transition: all 0.2s ease;
 }
 
-.bio {
-  font-size: 1.6rem;
-  color: var(--text-color);
-  opacity: 0.8;
-  line-height: 1.8;
+.tag:hover {
+  background: var(--primary-mid);
+  color: var(--deep-dark);
+  border-color: var(--primary-mid);
 }
 
-.info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem 2rem;
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    padding: 6rem 0;
+  }
+
+  .visual {
+    min-height: 320px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .underline {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -0.75rem;
+  }
+
+  .paragraph {
+    max-width: none;
+  }
+
+  .tags {
+    justify-content: center;
+  }
 }
 
-.infoItem { display: flex; flex-direction: column; gap: 0.2rem; }
+@media (max-width: 600px) {
+  .container {
+    padding: 5rem 0;
+    gap: 2.5rem;
+  }
 
-.infoLabel {
-  font-size: 1.2rem;
-  color: var(--primary-mid);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  .visual {
+    min-height: 280px;
+  }
+
+  .visualInner::before {
+    inset: 1.5rem;
+  }
+
+  .visualInner::after {
+    width: 80px;
+    height: 80px;
+  }
+
+  .heading {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+  }
+
+  .paragraph {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .tag {
+    font-size: 0.875rem;
+    padding: 0.45rem 0.9rem;
+  }
 }
 
-.infoVal {
-  font-size: 1.5rem;
-  color: var(--text-color);
-  font-weight: 500;
-}
-
-@media (max-width: 900px) {
-  .container { grid-template-columns: 1fr; gap: 4rem; }
-  .imgBox { max-width: 36rem; margin: 0 auto; }
-  .expBadge { right: 0; }
-  .info { grid-template-columns: 1fr; }
+@media (prefers-reduced-motion: reduce) {
+  .visualInner::after {
+    animation: none;
+  }
 }

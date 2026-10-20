@@ -46,9 +46,18 @@ const translations = {
       projects: 'Featured Projects', technologies: 'Technologies Used', download: 'Download CV', viewProjects: 'View Projects',
     },
     about: {
-      heading: 'About', accent: 'Me', tag: 'Full Stack Developer',
-      intro: 'I am Akongseh Klose, a passionate software engineering student who loves transforming ideas into elegant, functional web experiences.',
-      bio: 'With a strong foundation in both front end and backend development, I craft digital products that are not only visually stunning but also performant and user centric. I am constantly learning, building, and pushing boundaries in the world of web development.',
+      heading: 'About', accent: 'Me',
+      paragraphs: [
+        "I'm a Software Engineering student passionate about creating meaningful digital experiences. I believe in writing clean, efficient code and continuously pushing myself to learn and grow.",
+        "I'm driven by challenges and motivated by the endless possibilities of technology to solve real-world problems."
+      ],
+      coreIdentityLabel: 'CORE IDENTITY',
+      coreIdentityTags: [
+        'Software Engineering Student',
+        'Tech Enthusiast',
+        'Problem Solver',
+        'Quick Learner'
+      ],
       name: 'Name', location: 'Location', freelance: 'Freelance', available: 'Available', experience: 'Years Experience', download: 'Download CV',
     },
     experience: {
@@ -171,9 +180,18 @@ const translations = {
       projects: 'Projets présentés', technologies: 'Technologies utilisées', download: 'Télécharger le CV', viewProjects: 'Voir les projets',
     },
     about: {
-      heading: 'À', accent: 'propos', tag: 'Développeur full stack',
-      intro: 'Je suis Akongseh Klose, un étudiant passionné en ingénierie logicielle qui aime transformer les idées en expériences web élégantes et fonctionnelles.',
-      bio: 'Avec de solides bases en développement frontend et backend, je crée des produits numériques aussi beaux que performants et centrés sur l’utilisateur. J’apprends, je construis et je repousse constamment les limites du développement web.',
+      heading: 'À', accent: 'propos',
+      paragraphs: [
+        "Je suis un étudiant en Ingénierie Logicielle passionné par la création d'expériences numériques significatives. Je crois en l'écriture d'un code propre et efficace, et je me pousse constamment à apprendre et à grandir.",
+        "Je suis motivé par les défis et inspiré par les possibilités infinies de la technologie pour résoudre des problèmes concrets."
+      ],
+      coreIdentityLabel: 'IDENTITÉ CENTRALE',
+      coreIdentityTags: [
+        'Étudiant en Ingénierie Logicielle',
+        'Passionné de Tech',
+        'Résolveur de Problèmes',
+        'Apprentissage Rapide'
+      ],
       name: 'Nom', location: 'Localisation', freelance: 'Freelance', available: 'Disponible', experience: "Années d'expérience", download: 'Télécharger le CV',
     },
     experience: {
