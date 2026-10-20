@@ -29,10 +29,10 @@
   --surface-tint-strong: rgba(0, 0, 0, 0.08);
   --surface-border: rgba(0, 0, 0, 0.12);
   --surface-glow:   rgba(0, 0, 0, 0.18);
-  --whatsapp-bg:    #000000;
-  --whatsapp-fg:    #ffffff;
-  --whatsapp-border:#000000;
-  --whatsapp-ring:  rgba(0, 0, 0, 0.18);
+  --whatsapp-bg:    var(--card-bg);
+  --whatsapp-fg:    var(--text-color);
+  --whatsapp-border:#128C4A;
+  --whatsapp-ring:  rgba(18, 140, 74, 0.38);
   --section-pad:    10rem 7% 4rem;
 }
 
@@ -55,10 +55,10 @@ body.dark-mode {
   --surface-tint-strong: rgba(255, 255, 255, 0.1);
   --surface-border: rgba(255, 255, 255, 0.12);
   --surface-glow:   rgba(255, 255, 255, 0.18);
-  --whatsapp-bg:    #ffffff;
-  --whatsapp-fg:    #000000;
-  --whatsapp-border:#ffffff;
-  --whatsapp-ring:  rgba(255, 255, 255, 0.18);
+  --whatsapp-bg:    var(--card-bg);
+  --whatsapp-fg:    var(--text-color);
+  --whatsapp-border:#128C4A;
+  --whatsapp-ring:  rgba(18, 140, 74, 0.38);
 }
 
 html {
@@ -161,4 +161,124 @@ h2.heading span {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Theme Transition Animations */
+[data-theme-transition="fade-scale"] {
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme-transition="fade-scale"] * {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme-transition="fade-scale"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  z-index: 9998;
+  pointer-events: none;
+  animation: fadeScaleOverlay 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes fadeScaleOverlay {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 0.15; transform: scale(1.02); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+[data-theme-transition="rotate-flip"] {
+  perspective: 1000px;
+}
+[data-theme-transition="rotate-flip"] * {
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme-transition="rotate-flip"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(45deg, var(--primary-mid), var(--primary-dark));
+  z-index: 9998;
+  pointer-events: none;
+  transform-origin: center;
+  animation: rotateFlipOverlay 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes rotateFlipOverlay {
+  0% { opacity: 0; transform: rotateY(90deg) scale(0.5); }
+  50% { opacity: 0.12; transform: rotateY(0deg) scale(1); }
+  100% { opacity: 0; transform: rotateY(-90deg) scale(0.5); }
+}
+
+[data-theme-transition="slide-reveal"] {
+  overflow-x: hidden;
+}
+[data-theme-transition="slide-reveal"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  z-index: 9998;
+  pointer-events: none;
+  clip-path: inset(0 100% 0 0);
+  animation: slideRevealOverlay 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes slideRevealOverlay {
+  0% { clip-path: inset(0 100% 0 0); }
+  50% { clip-path: inset(0 0% 0 0); }
+  100% { clip-path: inset(0 0 0 100%); opacity: 0; }
+}
+
+[data-theme-transition="ripple-wave"]::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-mid) 0%, var(--primary-dark) 70%, transparent 100%);
+  z-index: 9998;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: rippleWaveOverlay 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes rippleWaveOverlay {
+  0% { width: 0; height: 0; opacity: 0.3; }
+  100% { width: 300vmax; height: 300vmax; opacity: 0; }
+}
+
+[data-theme-transition="particle-burst"]::before,
+[data-theme-transition="particle-burst"]::after {
+  content: '';
+  position: fixed;
+  z-index: 9998;
+  pointer-events: none;
+}
+[data-theme-transition="particle-burst"]::before {
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  background: var(--primary-mid);
+  box-shadow:
+    0 0 0 var(--primary-mid),
+    50px 50px 0 var(--primary-dark),
+    -50px -50px 0 var(--primary-dark),
+    50px -50px 0 var(--primary-mid),
+    -50px 50px 0 var(--primary-mid);
+  transform: translate(-50%, -50%);
+  animation: particleBurstOverlay 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+[data-theme-transition="particle-burst"]::after {
+  inset: 0;
+  background: var(--bg-color);
+  opacity: 0;
+  animation: particleBurstBg 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes particleBurstOverlay {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(200); opacity: 0; }
+}
+@keyframes particleBurstBg {
+  0% { opacity: 0; }
+  30% { opacity: 0.1; }
+  100% { opacity: 0; }
 }

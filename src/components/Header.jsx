@@ -1,20 +1,33 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import AnimatedLogo from './AnimatedLogo'
+import Icon from './Icon'
+import { useTheme } from '../context/ThemeContext'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './Header.module.css'
 
+const TRANSITION_LABELS = {
+  'fade-scale': 'Fade',
+  'rotate-flip': 'Flip',
+  'slide-reveal': 'Slide',
+  'ripple-wave': 'Ripple',
+  'particle-burst': 'Burst',
+}
+
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#services', label: 'Services' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#portfolio', label: 'Portfolio' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#home', key: 'home' },
+  { href: '#about', key: 'about' },
+  { href: '#services', key: 'services' },
+  { href: '#skills', key: 'skills' },
+  { href: '#portfolio', key: 'portfolio' },
+  { href: '#contact', key: 'contact' },
 ]
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState('#home')
+  const { isDark, toggle, transitionStyle } = useTheme()
+  const { language, setLanguage, labels, t } = useLanguage()
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll('section[id]'))
@@ -92,7 +105,7 @@ export default function Header() {
     >
       <AnimatedLogo size="md" />
 
-      <nav className={styles.navbar} aria-label="Main navigation">
+      <nav className={styles.navbar} aria-label={t('common.mainNavigation')}>
         {navLinks.map(link => (
           <a
             key={link.href}
@@ -100,16 +113,44 @@ export default function Header() {
             className={`${styles.navLink} ${active === link.href ? styles.navActive : ''}`}
             onClick={closeMenu}
           >
-            {link.label}
+            {labels[link.key]}
           </a>
         ))}
       </nav>
 
       <div className={styles.actions}>
+        <div className={styles.languageSwitch} aria-label={t('common.languageSelection')}>
+          <button
+            className={`${styles.languageBtn} ${language === 'en' ? styles.languageActive : ''}`}
+            onClick={() => setLanguage('en')}
+            type="button"
+            aria-pressed={language === 'en'}
+          >
+            EN
+          </button>
+          <button
+            className={`${styles.languageBtn} ${language === 'fr' ? styles.languageActive : ''}`}
+            onClick={() => setLanguage('fr')}
+            type="button"
+            aria-pressed={language === 'fr'}
+          >
+            FR
+          </button>
+        </div>
+        <button
+          className={styles.themeBtn}
+          onClick={toggle}
+          type="button"
+          aria-label={isDark ? t('common.switchToLight') : t('common.switchToDark')}
+          title={isDark ? t('common.lightMode') : t('common.darkMode')}
+        >
+          <Icon name={isDark ? 'bx bx-sun' : 'bx bx-moon'} className={styles.themeIcon} />
+          <span className={styles.transitionLabel}>{TRANSITION_LABELS[transitionStyle]}</span>
+        </button>
         <button
           className={`${styles.menuBtn} ${menuOpen ? styles.menuOpen : ''}`}
           onClick={() => setMenuOpen(p => !p)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-label={menuOpen ? t('common.closeMenu') : t('common.openMenu')}
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
           type="button"
@@ -137,7 +178,7 @@ export default function Header() {
                 className={`${styles.mobileLink} ${active === link.href ? styles.navActive : ''}`}
                 onClick={closeMenu}
               >
-                {link.label}
+                {labels[link.key]}
               </a>
             ))}
           </motion.div>

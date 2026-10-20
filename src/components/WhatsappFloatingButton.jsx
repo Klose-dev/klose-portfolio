@@ -1,10 +1,12 @@
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import Icon from './Icon'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './WhatsappFloatingButton.module.css'
 
 export default function WhatsappFloatingButton() {
   const btnRef = useRef(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const btn = btnRef.current
@@ -34,12 +36,12 @@ export default function WhatsappFloatingButton() {
       ref={btnRef}
       href="#contact"
       className={styles.button}
-      aria-label="Jump to contact form"
-      title="Contact via WhatsApp"
+      aria-label={t('whatsapp.aria')}
+      title={t('whatsapp.title')}
     >
       <span className={styles.pulse} aria-hidden="true" />
       <Icon name="fab fa-whatsapp" className={styles.icon} />
-      <span className={styles.label}>WhatsApp</span>
+      <span className={styles.label}>{t('whatsapp.label')}</span>
     </a>
   )
 }

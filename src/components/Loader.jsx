@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './Loader.module.css'
 
 export default function Loader() {
+  const { t } = useLanguage()
+
   return (
     <motion.div
       className={styles.overlay}
       role="status"
       aria-live="polite"
-      aria-label="Loading portfolio"
+      aria-label={t('common.loadingPortfolio')}
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -20,7 +23,7 @@ export default function Loader() {
           <span />
         </div>
         <div className={styles.copy}>
-          <span className={styles.label}>Loading</span>
+          <span className={styles.label}>{t('common.loading')}</span>
           <span className={styles.title}>Klose Portfolio</span>
         </div>
       </div>

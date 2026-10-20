@@ -97,8 +97,8 @@
   justify-content: flex-start;
   gap: 1rem;
   background:
-    radial-gradient(circle at top right, var(--surface-tint), transparent 40%),
-    linear-gradient(180deg, var(--primary-dark), var(--primary-mid));
+    radial-gradient(circle at top right, var(--surface-tint-strong), transparent 40%),
+    linear-gradient(180deg, var(--card-bg), var(--bg-color));
 }
 
 .card:focus-visible .face {

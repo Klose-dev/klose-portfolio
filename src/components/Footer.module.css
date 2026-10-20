@@ -1,7 +1,7 @@
 .footer {
   position: relative;
   background: linear-gradient(160deg, var(--bg-color) 0%, var(--surface-tint) 48%, var(--surface-tint-strong) 100%);
-  color: rgba(236, 255, 251, 0.82);
+  color: var(--text-color);
   overflow: hidden;
 }
 
@@ -31,7 +31,7 @@
 .tagline {
   font-size: 1.45rem;
   line-height: 1.8;
-  color: rgba(236, 255, 251, 0.66);
+  color: var(--text-muted);
   max-width: 30rem;
 }
 
@@ -46,15 +46,15 @@
   border-radius: 50%;
   background: var(--surface-tint);
   border: 1px solid var(--surface-border);
-  color: rgba(236, 255, 251, 0.7);
+  color: var(--text-color);
   font-size: 1.7rem;
   transition: all 0.3s ease;
 }
 
 .socialIcon:hover {
-  background: var(--accent-light);
+  background: var(--primary-mid);
   color: var(--deep-dark);
-  border-color: var(--accent-light);
+  border-color: var(--primary-mid);
   transform: translateY(-3px);
   box-shadow: 0 6px 16px var(--surface-glow);
 }
@@ -65,7 +65,7 @@
 .colTitle {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #ecfffb;
+  color: var(--text-color);
   position: relative;
   padding-bottom: 1.2rem;
 }
@@ -77,7 +77,7 @@
   left: 0;
   width: 4rem;
   height: 2px;
-  background: var(--accent-light);
+  background: var(--primary-mid);
   border-radius: 1px;
 }
 
@@ -93,14 +93,14 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 1.4rem;
-  color: rgba(236, 255, 251, 0.68);
+  color: var(--text-muted);
   transition: color 0.3s, gap 0.3s;
   cursor: pointer;
 }
 
-.link:hover { color: var(--accent-light); gap: 0.9rem; }
+.link:hover { color: var(--primary-mid); gap: 0.9rem; }
 
-.link i { font-size: 1.6rem; color: var(--accent-light); opacity: 0.6; }
+.link i { font-size: 1.6rem; color: var(--text-muted); }
 
 /* Contact items */
 .contactItems { display: flex; flex-direction: column; gap: 1.4rem; }
@@ -110,12 +110,12 @@
   align-items: center;
   gap: 1rem;
   font-size: 1.4rem;
-  color: rgba(236, 255, 251, 0.68);
+  color: var(--text-muted);
 }
 
 .contactItem i {
   font-size: 1.8rem;
-  color: var(--accent-light);
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 
@@ -134,14 +134,14 @@
 
 .copy {
   font-size: 1.4rem;
-  color: rgba(236, 255, 251, 0.54);
+  color: var(--text-muted);
 }
 
-.copy span { color: var(--accent-light); font-weight: 600; }
+.copy span { color: var(--primary-mid); font-weight: 600; }
 
 .made {
   font-size: 1.4rem;
-  color: rgba(236, 255, 251, 0.54);
+  color: var(--text-muted);
 }
 
 .made span { color: var(--accent-light); }
@@ -155,13 +155,13 @@
   background: var(--surface-tint);
   border: 1px solid var(--surface-border);
   border-radius: 50%;
-  color: var(--accent-light);
+  color: var(--text-color);
   font-size: 2rem;
   transition: all 0.3s ease;
 }
 
 .topBtn:hover {
-  background: var(--accent-light);
+  background: var(--primary-mid);
   color: var(--deep-dark);
 }
 

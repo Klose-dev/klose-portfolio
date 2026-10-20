@@ -1,16 +1,17 @@
 import { motion } from 'framer-motion'
 import AnimatedLogo from './AnimatedLogo'
 import Icon from './Icon'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './Footer.module.css'
 
 const navLinks = [
-  { href: '#home',      label: 'Home'      },
-  { href: '#about',     label: 'About'     },
-  { href: '#services',  label: 'Services'  },
-  { href: '#skills',    label: 'Skills'    },
-  { href: '#portfolio', label: 'Portfolio' },
-  { href: '#casestudy', label: 'Projects'  },
-  { href: '#contact',   label: 'Contact'   },
+  { href: '#home',      key: 'home'      },
+  { href: '#about',     key: 'about'     },
+  { href: '#services',  key: 'services'  },
+  { href: '#skills',    key: 'skills'    },
+  { href: '#portfolio', key: 'portfolio' },
+  { href: '#casestudy', key: 'projects'  },
+  { href: '#contact',   key: 'contact'   },
 ]
 
 const socials = [
@@ -21,15 +22,8 @@ const socials = [
   { icon: 'bx bxl-linkedin',      href: '#', label: 'LinkedIn'  },
 ]
 
-const services = [
-  'Web Development',
-  'Website Maintenance',
-  'Web Design',
-  'UI/UX Design',
-  'Backend Development',
-]
-
 export default function Footer() {
+  const { t, labels } = useLanguage()
   const handleBackToTop = (event) => {
     event.preventDefault()
     const target = document.getElementById('home')
@@ -47,8 +41,7 @@ export default function Footer() {
         <div className={styles.brand}>
           <AnimatedLogo size="md" />
           <p className={styles.tagline}>
-            Building beautiful, functional web experiences from Yaoundé, Cameroon.
-            Open to freelance and full time opportunities.
+            {t('footer.tagline')}
           </p>
           <div className={styles.socials}>
             {socials.map(s => (
@@ -61,12 +54,12 @@ export default function Footer() {
 
         {/* Quick links */}
         <div className={styles.col}>
-          <h4 className={styles.colTitle}>Quick Links</h4>
+          <h4 className={styles.colTitle}>{t('footer.quickLinks')}</h4>
           <ul className={styles.list}>
             {navLinks.map(l => (
               <li key={l.href}>
                 <a href={l.href} className={styles.link}>
-                  <Icon name="bx bx-chevron-right" className={styles.linkIcon} /> {l.label}
+                  <Icon name="bx bx-chevron-right" className={styles.linkIcon} /> {labels[l.key]}
                 </a>
               </li>
             ))}
@@ -75,12 +68,12 @@ export default function Footer() {
 
         {/* Services */}
         <div className={styles.col}>
-          <h4 className={styles.colTitle}>Services</h4>
+          <h4 className={styles.colTitle}>{t('footer.services')}</h4>
           <ul className={styles.list}>
-            {services.map(s => (
-              <li key={s}>
+            {t('footer.serviceList').map((service, index) => (
+              <li key={index}>
                 <span className={styles.link}>
-                  <Icon name="bx bx-chevron-right" className={styles.linkIcon} /> {s}
+                  <Icon name="bx bx-chevron-right" className={styles.linkIcon} /> {service}
                 </span>
               </li>
             ))}
@@ -89,7 +82,7 @@ export default function Footer() {
 
         {/* Contact blurb */}
         <div className={styles.col}>
-          <h4 className={styles.colTitle}>Get In Touch</h4>
+          <h4 className={styles.colTitle}>{t('footer.getInTouch')}</h4>
           <div className={styles.contactItems}>
             {[
               { icon: 'bx bx-map',      val: 'Yaoundé, Cameroon'  },
@@ -107,15 +100,12 @@ export default function Footer() {
 
       <div className={styles.bottom}>
         <p className={styles.copy}>
-          © {new Date().getFullYear()} <span>Akongseh Klose</span>. All rights reserved.
-        </p>
-        <p className={styles.made}>
-          Made with <span>♥</span> in Cameroon
+          © {new Date().getFullYear()} <span>Akongseh Klose</span>. {t('footer.rights')}
         </p>
         <motion.a
           href="#home"
           className={styles.topBtn}
-          aria-label="Back to top"
+          aria-label={t('footer.backToTop')}
           onClick={handleBackToTop}
           whileHover={{ y: -4, boxShadow: '0 0 2rem rgba(101,198,183,0.5)' }}
           transition={{ duration: 0.3 }}

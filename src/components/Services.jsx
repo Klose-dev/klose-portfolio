@@ -1,25 +1,26 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Icon from './Icon'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './Services.module.css'
 
 const services = [
   {
     icon: 'bx bx-code-alt',
-    title: 'Web Development',
-    desc: 'Building robust, scalable web applications using modern technologies like React, PHP, Laravel and MySQL with clean, maintainable code architecture.',
+    titleKey: 'webTitle',
+    descKey: 'webDesc',
     tags: ['React', 'PHP', 'Laravel', 'MySQL', 'Python'],
   },
   {
     icon: 'bx bx-wrench',
-    title: 'Website Maintenance',
-    desc: 'Keeping your web presence optimized, secure, and up to date. From bug fixes to performance enhancements and regular content updates.',
+    titleKey: 'maintenanceTitle',
+    descKey: 'maintenanceDesc',
     tags: ['Performance', 'Security', 'Updates', 'React Native'],
   },
   {
     icon: 'bx bx-palette',
-    title: 'Web Design',
-    desc: 'Designing visually stunning, user-focused interfaces with careful attention to typography, color theory, spacing, and responsive layouts.',
+    titleKey: 'designTitle',
+    descKey: 'designDesc',
     tags: ['UI/UX', 'Figma', 'CSS', 'Responsive', 'React JS'],
   },
 ]
@@ -36,11 +37,12 @@ const cardVariants = {
 export default function Services() {
   const ref    = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const { t } = useLanguage()
 
   return (
     <section className={styles.services} id="services" ref={ref}>
       <h2 className="heading">
-        My <span>Services</span>
+        {t('services.heading')} <span>{t('services.accent')}</span>
       </h2>
 
       <div className={styles.grid}>
@@ -58,8 +60,8 @@ export default function Services() {
               <Icon name={s.icon} className={styles.serviceIcon} />
               <div className={styles.iconGlow} />
             </div>
-            <h3 className={styles.title}>{s.title}</h3>
-            <p className={styles.desc}>{s.desc}</p>
+            <h3 className={styles.title}>{t(`services.${s.titleKey}`)}</h3>
+            <p className={styles.desc}>{t(`services.${s.descKey}`)}</p>
             <div className={styles.tags}>
               {s.tags.map(t => (
                 <span key={t} className={styles.tag}>{t}</span>

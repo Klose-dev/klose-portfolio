@@ -1,5 +1,20 @@
 .skills {
   background: linear-gradient(180deg, var(--card-bg) 0%, var(--surface-tint) 100%);
+  position: relative;
+  overflow: visible;
+}
+
+.skills::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, var(--surface-tint-strong), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .grid {
@@ -9,6 +24,8 @@
   max-width: 1100px;
   margin: 0 auto;
   justify-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .ringWrap {
@@ -16,6 +33,11 @@
   flex-direction: column;
   align-items: center;
   gap: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.ringWrap:hover {
+  transform: translateY(-8px);
 }
 
 .ringIconAbove {
@@ -38,6 +60,11 @@
   position: absolute;
   inset: 0;
   filter: drop-shadow(0 0 12px var(--surface-glow));
+  transition: filter 0.3s ease;
+}
+
+.ringWrap:hover .svgBox svg {
+  filter: drop-shadow(0 0 24px var(--surface-glow)) drop-shadow(0 0 48px var(--primary-mid));
 }
 
 .ringCenter {
@@ -54,9 +81,15 @@
 .skillIcon {
   width: 2.8rem;
   height: 2.8rem;
-  color: var(--accent-light);
+  color: var(--text-color);
   display: block;
   flex-shrink: 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.ringWrap:hover .skillIcon {
+  transform: scale(1.15);
+  color: var(--primary-mid);
 }
 
 .pct {
@@ -71,6 +104,21 @@
   font-weight: 600;
   color: var(--text-color);
   letter-spacing: 0.03em;
+  transition: color 0.3s ease;
+}
+
+.ringWrap:hover .ringLabel {
+  color: var(--primary-mid);
+}
+
+.floatParticle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary-mid);
+  box-shadow: 0 0 8px var(--primary-mid), 0 0 16px var(--primary-mid);
+  pointer-events: none;
 }
 
 @media (max-width: 600px) {
@@ -88,5 +136,21 @@
   .skillIcon {
     width: 2.8rem;
     height: 2.8rem;
+  }
+
+  .skills::before {
+    width: 300px;
+    height: 200px;
+    top: -30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floatParticle {
+    display: none;
+  }
+  
+  .ringWrap:hover {
+    transform: none;
   }
 }

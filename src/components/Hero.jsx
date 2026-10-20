@@ -4,14 +4,8 @@ import { SparkleParticles } from './SparkleParticles'
 import TextGenerateEffect from './TextGenerateEffect'
 import MagneticButton from './MagneticButton'
 import Icon from './Icon'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './Hero.module.css'
-
-const professions = [
-  { icon: 'bx bx-code-alt',        label: 'Web Developer'  },
-  { icon: 'bx bx-heart',           label: 'Drummer'        },
-  { icon: 'bx bx-palette',         label: 'Web Designer'   },
-  { icon: 'bx bx-shield-quarter',  label: 'Ethical Hacker' },
-]
 
 const socials = [
   { icon: 'bx bxl-facebook',       href: '#' },
@@ -24,13 +18,19 @@ const socials = [
 ]
 
 const stats = [
-  { value: 6, suffix: '+', label: 'Featured Projects', icon: 'bx bx-check-circle' },
-  { value: 4, suffix: '+', label: 'Core Roles', icon: 'bx bx-user' },
-  { value: 10, suffix: '+', label: 'Technologies Used', icon: 'bx bx-code-alt' },
+  { value: 6, suffix: '+', icon: 'bx bx-check-circle' },
+  { value: 4, suffix: '+', icon: 'bx bx-user' },
+  { value: 10, suffix: '+', icon: 'bx bx-code-alt' },
 ]
 
-const fadeLeft  = { hidden: { x: -60, opacity: 0 }, show: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } } }
-const fadeRight = { hidden: { x:  60, opacity: 0 }, show: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } } }
+const fadeLeft = {
+  hidden: { x: -60, opacity: 0 },
+  show: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+}
+const fadeRight = {
+  hidden: { x: 60, opacity: 0 },
+  show: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+}
 
 function CountUp({ end, suffix = '' }) {
   const [value, setValue] = useState(0)
@@ -51,7 +51,6 @@ function CountUp({ end, suffix = '' }) {
     }
 
     frameId = requestAnimationFrame(tick)
-
     return () => cancelAnimationFrame(frameId)
   }, [end])
 
@@ -61,6 +60,7 @@ function CountUp({ end, suffix = '' }) {
 export default function Hero() {
   const heroRef = useRef(null)
   const [showParticles, setShowParticles] = useState(true)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const hero = heroRef.current
@@ -101,7 +101,7 @@ export default function Hero() {
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             <span className={styles.badgeDot} />
-            <span>Available for work</span>
+            <span>{t('hero.availability')}</span>
           </motion.div>
 
           <motion.h3
@@ -110,7 +110,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            Hello, I am
+            {t('hero.greeting')}
           </motion.h3>
 
           <motion.h1
@@ -128,12 +128,7 @@ export default function Hero() {
             transition={{ delay: 0.9, duration: 0.8 }}
           >
             <TextGenerateEffect
-              words={[
-                "A passionate web developer who loves creating beautiful and functional digital experiences with innovation.",
-                "Specializing in modern web technologies and user centered design solutions.",
-                "Building responsive applications that combine creativity with cutting edge technology.",
-                "Transforming ideas into interactive digital realities through code and design."
-              ]}
+              words={t('hero.paragraphs')}
               textClassName={styles.heroParagraph}
               duration={0.4}
               filter={true}
@@ -148,8 +143,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.05, duration: 0.6 }}
           >
-            {stats.map((stat) => (
-              <div key={stat.label} className={styles.statCard}>
+            {stats.map((stat, index) => (
+              <div key={index} className={styles.statCard}>
                 <div className={styles.statIconWrap} aria-hidden="true">
                   <Icon name={stat.icon} className={styles.statIcon} />
                 </div>
@@ -157,7 +152,7 @@ export default function Hero() {
                   <span className={styles.statValue}>
                     <CountUp end={stat.value} suffix={stat.suffix} />
                   </span>
-                  <span className={styles.statLabel}>{stat.label}</span>
+                  <span className={styles.statLabel}>{t('hero.stats')[index]}</span>
                 </div>
               </div>
             ))}
@@ -169,9 +164,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
-            {socials.map((s, i) => (
-              <a key={i} href={s.href} className={styles.socialIcon}>
-                <Icon name={s.icon} className={styles.socialIconSvg} />
+            {socials.map((social, index) => (
+              <a key={index} href={social.href} className={styles.socialIcon}>
+                <Icon name={social.icon} className={styles.socialIconSvg} />
               </a>
             ))}
           </motion.div>
@@ -183,10 +178,10 @@ export default function Hero() {
             transition={{ delay: 1.4, duration: 0.6 }}
           >
             <MagneticButton variant="solid" className={styles.heroSolidBtn}>
-              <Icon name="bx bx-download" className={styles.buttonIcon} /> Download CV
+              <Icon name="bx bx-download" className={styles.buttonIcon} /> {t('hero.download')}
             </MagneticButton>
             <MagneticButton variant="glass" className={styles.heroGlassBtn}>
-              View Projects
+              {t('hero.viewProjects')}
             </MagneticButton>
           </motion.div>
         </motion.div>
@@ -199,8 +194,8 @@ export default function Hero() {
         >
           <div className={styles.heroImageFrame}>
             <img
-              src="/images/klose_ab.png"
-              alt="hero image"
+              src="/klose-k.jpeg"
+              alt="Portrait of Akongseh Klose"
               className={`${styles.heroImage} ${styles.heroImageActive}`}
               loading="lazy"
             />

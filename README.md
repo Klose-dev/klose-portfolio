@@ -1,53 +1,80 @@
-# Klose Portfolio — React JS
+# Klose Portfolio
 
-Modern, immersive portfolio website built with React 18 + Vite.
+A modern, immersive portfolio website built with React and Vite.
 
 ## Features
-- ⚡ WebGL Fire Shader hero background (luxury green palette)
-- 🌐 Three.js Tech Stack Convergence animation (5→1 WebGL routing)
-- ✨ Cinematic TextGenerateEffect (Framer Motion stagger blur)
-- 🎯 Animated `< Klose />` brand logo with blinking cursor
-- 💫 GSAP magnetic CTA buttons
-- 🌙 Dark / Light mode via React Context
-- 📊 Animated SVG circular skill rings
-- 🖼️ Portfolio with hover overlay reveal
-- 🎠 Swiper testimonials slider
-- 📱 Fully responsive (320px → 1400px+)
-- 🔮 Glass-effect navbar
 
-## Tech Stack
-React 18 · Vite · Framer Motion · Three.js · GSAP · Swiper · React Icons · CSS Modules
+- WebGL fire-shader hero background
+- Interactive tech-stack animations with Three.js
+- Framer Motion text and layout transitions
+- Animated Klose brand logo and magnetic CTA buttons
+- Light and dark themes via React Context
+- Responsive portfolio, skills, testimonials, contact, and footer sections
 
-## Setup
+## Tech stack
+
+React 18, Vite, Framer Motion, Three.js, GSAP, Swiper, React Icons, and CSS Modules.
+
+## Requirements
+
+- Node.js 20.19+ or 22.12+
+- npm
+
+## Run locally
+
+Open PowerShell in the project directory:
+
+```powershell
+cd C:\Users\Klose\Desktop\klose-portfolio
+npm.cmd ci
+npm.cmd run dev
+```
+
+Vite will print a local URL, normally `http://localhost:5173/`. Keep the terminal open while using the site. Press `Ctrl+C` to stop the development server.
+
+On macOS or Linux, use the equivalent commands:
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-## Images
-Place your images in `/public/images/`:
-- `about.jpg` — your profile photo
-- `portfolio1.jpg` → `portfolio6.jpg` — project screenshots
-- `testi1.jpg` → `testi4.jpg` — testimonial avatars
+## Production build
 
-## Color Palette
-| Token          | Value     |
-|----------------|-----------|
-| Primary Dark   | `#004B3B` |
-| Primary Mid    | `#50C878` |
-| Accent Light   | `#9DC183` |
-| Deep Dark      | `#004225` |
-| Teal           | `#097969` |
-| BG Light       | `#f4faf6` |
-| Text Dark      | `#0B3D2E` |
-
-## Deployment
-```bash
-npm run build
-# → dist/ folder ready to deploy to Netlify / Vercel / GitHub Pages
+```powershell
+npm.cmd run build
 ```
 
-Built by Akongseh Klose — YIBS HND Software Engineering
-# klose-portfolio
-# klose-portfolio
+The deployable files are created in `dist/`.
+
+## Troubleshooting
+
+If dependency installation fails or files in `node_modules` appear incomplete:
+
+1. Close editors, terminals, sync apps, and File Explorer windows that may be using the project.
+2. Delete only the project's `node_modules` directory.
+3. Run `npm.cmd ci` again.
+
+If the project is stored in a protected or encrypted Desktop/Documents folder, move it to a development directory such as `C:\Projects\klose-portfolio` before reinstalling dependencies.
+
+## Images
+
+Place site images in `public/images/`:
+
+- `about.jpg` - profile photo
+- `portfolio1.jpg` through `portfolio6.jpg` - project screenshots
+- `testi1.jpg` through `testi4.jpg` - testimonial avatars
+
+## Color palette
+
+| Token | Value |
+| --- | --- |
+| Primary Dark | `#004B3B` |
+| Primary Mid | `#50C878` |
+| Accent Light | `#9DC183` |
+| Deep Dark | `#004225` |
+| Teal | `#097969` |
+| BG Light | `#f4faf6` |
+| Text Dark | `#0B3D2E` |
+
+Built by Akongseh Klose - YIBS HND Software Engineering.

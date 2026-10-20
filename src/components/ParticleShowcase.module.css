@@ -1,0 +1,140 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: 58rem;
+  padding: 8rem 7% 5rem;
+  background:
+    radial-gradient(ellipse at center, var(--surface-tint-strong), transparent 68%),
+    var(--bg-color);
+}
+
+.copy {
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 1.2rem;
+  color: var(--primary-mid);
+  font-family: ui-monospace, monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.heading {
+  color: var(--text-color);
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.description {
+  margin-top: 1.2rem;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+}
+
+.animationStage {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 36rem;
+  display: grid;
+  place-items: center;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--primary-mid);
+}
+
+.typingStage {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--primary-mid);
+  font-size: clamp(2.2rem, 7vw, 7rem);
+  font-weight: 900;
+  letter-spacing: 0.035em;
+  line-height: 1.15;
+  text-align: center;
+  pointer-events: none;
+}
+
+.typingText {
+  display: inline-block;
+  max-width: 100%;
+  padding-right: 0.08em;
+  white-space: nowrap;
+  border-right: 0.055em solid currentColor;
+  clip-path: inset(0 100% 0 0);
+  animation: typeReveal var(--typing-duration) steps(var(--typing-steps), end) var(--typing-delay) both;
+}
+
+.typingComplete {
+  border-right-color: transparent;
+}
+
+.outgoingText {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  animation: fadeTextOut 280ms ease forwards;
+}
+
+@keyframes typeReveal {
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes fadeTextOut {
+  to {
+    opacity: 0;
+    transform: translateY(-0.3em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typingText {
+    padding-right: 0;
+    border-right: 0;
+    clip-path: none;
+    animation: none;
+  }
+
+  .outgoingText {
+    animation: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    min-height: 48rem;
+    padding-inline: 4%;
+  }
+
+  .eyebrow {
+    font-size: 1rem;
+  }
+
+  .description {
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+
+  .animationStage {
+    height: 28rem;
+  }
+}

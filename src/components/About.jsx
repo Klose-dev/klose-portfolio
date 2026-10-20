@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import TextGenerateEffect from './TextGenerateEffect'
 import MagneticButton from './MagneticButton'
 import Icon from './Icon'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './About.module.css'
 
 const fadeIn = (dir = 'left', delay = 0) => ({
@@ -13,11 +14,12 @@ const fadeIn = (dir = 'left', delay = 0) => ({
 export default function About() {
   const ref   = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
+  const { t } = useLanguage()
 
   return (
     <section className={styles.about} id="about" ref={ref}>
       <h2 className="heading">
-        About <span>Me</span>
+        {t('about.heading')} <span>{t('about.accent')}</span>
       </h2>
 
       <div className={styles.container}>
@@ -29,12 +31,12 @@ export default function About() {
           animate={inView ? 'show' : 'hidden'}
         >
           <div className={styles.imgBox}>
-            <img src="/images/klose_ab.png" alt="Klose ab" onError={e => { e.target.style.display='none' }} />
+            <img src="/klose-k.jpeg" alt="Portrait of Akongseh Klose" />
             <div className={styles.imgOverlay} />
           </div>
           <div className={styles.expBadge}>
-            <span className={styles.expNum}>2+</span>
-            <span className={styles.expLabel}>Years<br />Experience</span>
+            <span className={styles.expNum}>3+</span>
+            <span className={styles.expLabel}>{t('about.experience')}</span>
           </div>
         </motion.div>
 
@@ -45,31 +47,25 @@ export default function About() {
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          <div className={styles.tag}>Full Stack Developer</div>
+          <div className={styles.tag}>{t('about.tag')}</div>
 
           {inView && (
             <TextGenerateEffect
-              words="I am Akongseh Klose, a passionate software engineering student who loves transforming ideas into elegant, functional web experiences."
+              words={t('about.intro')}
               duration={0.4}
               filter={true}
             />
           )}
 
           <p className={styles.bio}>
-            With a strong foundation in both front end and backend development,
-            I craft digital products that are not only visually stunning but also
-            performant and user centric. I am constantly learning, building, and
-            pushing boundaries in the world of web development.
+            {t('about.bio')}
           </p>
 
           <div className={styles.info}>
             {[
-              { label: 'Name',       val: 'Akongseh Klose' },
-              { label: 'Date of Birth', val: 'September,22 2004' },
-              { label: 'Location',   val: 'Yaoundé, Cameroon' },
-              { label: 'Email',      val: 'akongsehklose@gmail.com' },
-              { label: 'Phone',      val: '+237 671313884' },
-              { label: 'Freelance',  val: 'Available' },
+              { label: t('about.name'),       val: 'Akongseh Klose' },
+              { label: t('about.location'),   val: 'Yaoundé, Cameroon' },
+              { label: t('about.freelance'),  val: t('about.available') },
             ].map(({ label, val }) => (
               <div key={label} className={styles.infoItem}>
                 <span className={styles.infoLabel}>{label}:</span>
@@ -79,7 +75,7 @@ export default function About() {
           </div>
 
           <MagneticButton variant="solid">
-            <Icon name="bx bx-download" className={styles.buttonIcon} /> Download CV
+            <Icon name="bx bx-download" className={styles.buttonIcon} /> {t('about.download')}
           </MagneticButton>
         </motion.div>
       </div>

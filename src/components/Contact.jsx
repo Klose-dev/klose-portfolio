@@ -2,22 +2,23 @@ import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import MagneticButton from './MagneticButton'
 import Icon from './Icon'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './Contact.module.css'
 
 const whatsappNumber = '237671313884'
 
 const fields = [
-  { name: 'name',    label: 'Full Name',     type: 'text',  icon: 'bx bx-user',     half: true  },
-  { name: 'email',   label: 'Email Address', type: 'email', icon: 'bx bx-envelope', half: true  },
-  { name: 'phone',   label: 'Phone Number',  type: 'tel',   icon: 'bx bx-phone',    half: true  },
-  { name: 'subject', label: 'Subject',       type: 'text',  icon: 'bx bx-book-alt', half: true  },
-  { name: 'message', label: 'Your Message',  type: 'area',  icon: 'bx bx-message',  half: false },
+  { name: 'name',    labelKey: 'fullName',     type: 'text',  icon: 'bx bx-user',     half: true  },
+  { name: 'email',   labelKey: 'emailAddress', type: 'email', icon: 'bx bx-envelope', half: true  },
+  { name: 'phone',   labelKey: 'phoneNumber',  type: 'tel',   icon: 'bx bx-phone',    half: true  },
+  { name: 'subject', labelKey: 'subject',      type: 'text',  icon: 'bx bx-book-alt', half: true  },
+  { name: 'message', labelKey: 'message',      type: 'area',  icon: 'bx bx-message',  half: false },
 ]
 
 const contactInfo = [
-  { icon: 'bx bx-map',         label: 'Location',   val: 'Yaoundé, Cameroon'    },
-  { icon: 'bx bx-envelope',    label: 'Email',      val: 'akongsehklose22@gmail.com'    },
-  { icon: 'fab fa-whatsapp',   label: 'WhatsApp',   val: '+237 671 313 884'     },
+  { icon: 'bx bx-map',         labelKey: 'location',   val: 'Yaoundé, Cameroon'    },
+  { icon: 'bx bx-envelope',    labelKey: 'email',      val: 'akongsehklose22@gmail.com'    },
+  { icon: 'fab fa-whatsapp',   labelKey: 'whatsapp',   val: '+237 671 313 884'     },
 ]
 
 export default function Contact() {
@@ -26,6 +27,7 @@ export default function Contact() {
   const [form, setForm]     = useState({})
   const [sent, setSent]     = useState(false)
   const [error, setError]   = useState('')
+  const { t } = useLanguage()
 
   const onChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
@@ -39,17 +41,17 @@ export default function Contact() {
     const message = (form.message || '').trim()
 
     if (!name || !email || !phone || !subject || !message) {
-      setError('Please fill in all fields before sending.')
+      setError(true)
       return
     }
 
-    setError('')
+    setError(false)
 
     const text = [
-      `New portfolio message from ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      `Subject: ${subject}`,
+      `${t('contact.messageIntro')} ${name}`,
+      `${t('contact.email')}: ${email}`,
+      `${t('contact.phoneNumber')}: ${phone}`,
+      `${t('contact.subject')}: ${subject}`,
       '',
       message,
     ].join('\n')
@@ -64,7 +66,7 @@ export default function Contact() {
   return (
     <section className={styles.section} id="contact" ref={ref}>
       <h2 className="heading">
-        Contact <span>Me</span>
+        {t('contact.heading')} <span>{t('contact.accent')}</span>
       </h2>
 
       <div className={styles.container}>
@@ -75,20 +77,19 @@ export default function Contact() {
           animate={inView ? { x: 0, opacity: 1 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <h3 className={styles.infoTitle}>Let's work together</h3>
+          <h3 className={styles.infoTitle}>{t('contact.title')}</h3>
           <p className={styles.infoDesc}>
-            Have a project in mind or want to discuss an opportunity?
-            I'd love to hear from you. Drop me a message and I'll get back to you as soon as possible.
+            {t('contact.description')}
           </p>
 
           <div className={styles.infoCards}>
             {contactInfo.map(c => (
-              <div key={c.label} className={styles.infoCard}>
+              <div key={c.labelKey} className={styles.infoCard}>
                 <div className={styles.infoIcon}>
                   <Icon name={c.icon} className={styles.infoIconInner} />
                 </div>
                 <div>
-                  <div className={styles.infoLabel}>{c.label}</div>
+                  <div className={styles.infoLabel}>{t(`contact.${c.labelKey}`)}</div>
                   <div className={styles.infoVal}>{c.val}</div>
                 </div>
               </div>
@@ -108,7 +109,7 @@ export default function Contact() {
             {fields.map(f => (
               <div key={f.name} className={`${styles.field} ${f.half ? styles.half : styles.full}`}>
                 <label className={styles.label} htmlFor={f.name}>
-                  <Icon name={f.icon} className={styles.labelIcon} /> {f.label}
+                  <Icon name={f.icon} className={styles.labelIcon} /> {t(`contact.${f.labelKey}`)}
                 </label>
                 {f.type === 'area' ? (
                   <textarea
@@ -116,7 +117,7 @@ export default function Contact() {
                     name={f.name}
                     rows={5}
                     className={styles.input}
-                    placeholder={f.label}
+                    placeholder={t(`contact.${f.labelKey}`)}
                     onChange={onChange}
                     required
                   />
@@ -126,7 +127,7 @@ export default function Contact() {
                     name={f.name}
                     type={f.type}
                     className={styles.input}
-                    placeholder={f.label}
+                    placeholder={t(`contact.${f.labelKey}`)}
                     onChange={onChange}
                     required
                   />
@@ -137,16 +138,16 @@ export default function Contact() {
 
           <div className={styles.submitRow}>
             <MagneticButton variant="solid">
-              {sent ? <><Icon name="bx bx-check-circle" className={styles.buttonIcon} /> Sent!</> : <><Icon name="bx bx-send" className={styles.buttonIcon} /> Send Message</>}
+              {sent ? <><Icon name="bx bx-check-circle" className={styles.buttonIcon} /> {t('contact.sent')}</> : <><Icon name="bx bx-send" className={styles.buttonIcon} /> {t('contact.send')}</>}
             </MagneticButton>
           </div>
 
           {error && (
-            <p className={styles.formError}>{error}</p>
+          <p className={styles.formError}>{t('contact.error')}</p>
           )}
 
           <p className={styles.formHint}>
-            Your message will open in WhatsApp and be sent to +237 671 313 884.
+            {t('contact.hint')}
           </p>
         </motion.form>
       </div>

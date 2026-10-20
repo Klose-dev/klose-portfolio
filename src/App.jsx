@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { ThemeProvider } from './context/ThemeContext'
+import { LanguageProvider } from './context/LanguageContext'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -14,6 +15,8 @@ const CaseStudy = lazy(() => import('./components/CaseStudy'))
 const Portfolio = lazy(() => import('./components/Portfolio'))
 const Testimonials = lazy(() => import('./components/Testimonials'))
 const Contact = lazy(() => import('./components/Contact'))
+const ParticleShowcase = lazy(() => import('./components/ParticleShowcase'))
+const FAQ = lazy(() => import('./components/FAQ'))
 const Footer = lazy(() => import('./components/Footer'))
 
 function App() {
@@ -34,8 +37,9 @@ function App() {
   }, [])
 
   return (
-    <ThemeProvider>
-      <AnimatePresence mode="wait">
+    <LanguageProvider>
+      <ThemeProvider>
+        <AnimatePresence mode="wait">
         {isLoading ? (
           <Loader key="loader" />
         ) : (
@@ -59,7 +63,13 @@ function App() {
                 <Testimonials />
               </Suspense>
               <Suspense fallback={null}>
+                <FAQ />
+              </Suspense>
+              <Suspense fallback={null}>
                 <Contact />
+              </Suspense>
+              <Suspense fallback={null}>
+                <ParticleShowcase />
               </Suspense>
             </main>
             <WhatsappFloatingButton />
@@ -68,8 +78,9 @@ function App() {
             </Suspense>
           </>
         )}
-      </AnimatePresence>
-    </ThemeProvider>
+        </AnimatePresence>
+      </ThemeProvider>
+    </LanguageProvider>
   )
 }
 

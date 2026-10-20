@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import { useLanguage } from '../context/LanguageContext'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -10,30 +11,22 @@ import styles from './Testimonials.module.css'
 const testimonials = [
   {
     name: 'Mr Kanjo Elkamira',
-    role: 'Field Supervisor YIBS',
     avatar: '/images/testi1.jpg',
-    text: "Klose's ability to transform complex requirements into elegant, functional web solutions is remarkable. IdeaMarket is a testament to his technical skill and creative vision.",
     stars: 5,
   },
   {
     name: 'Mr. Yuven Carlson',
-    role: 'Academic Supervisor YIBS',
     avatar: '/images/testi2.jpg',
-    text: "An outstanding student whose dedication to software engineering goes beyond the classroom. His project demonstrates real world problem solving at an impressive level.",
     stars: 4.5,
   },
   {
     name: 'DIGIMARK CONSULTING Team',
-    role: 'Internship Organization',
     avatar: '/images/testi3.jpg',
-    text: "Klose integrated seamlessly into our team and delivered production quality code. His full stack knowledge and work ethic are exceptional for someone at his stage.",
     stars: 4,
   },
   {
     name: 'Colleague Developer',
-    role: 'Peer at YIBS',
     avatar: '/images/testi4.jpg',
-    text: "Working alongside Klose has been inspiring. His eye for design combined with strong backend knowledge makes him a truly full stack talent.",
     stars: 5,
   },
 ]
@@ -41,11 +34,13 @@ const testimonials = [
 export default function Testimonials() {
   const ref    = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const { t } = useLanguage()
+  const translatedEntries = t('testimonials.entries')
 
   return (
     <section className={styles.section} id="testimonials" ref={ref}>
       <h2 className="heading">
-        What People <span>Say</span>
+        {t('testimonials.heading')} <span>{t('testimonials.accent')}</span>
       </h2>
 
       <motion.div
@@ -74,7 +69,7 @@ export default function Testimonials() {
                 <div className={styles.stars}>
                   {'★'.repeat(t.stars)}
                 </div>
-                <p className={styles.text}>"{t.text}"</p>
+                <p className={styles.text}>"{translatedEntries[i].text}"</p>
                 <div className={styles.author}>
                   <div className={styles.avatar}>
                     <img
@@ -88,7 +83,7 @@ export default function Testimonials() {
                   </div>
                   <div>
                     <div className={styles.name}>{t.name}</div>
-                    <div className={styles.role}>{t.role}</div>
+                    <div className={styles.role}>{translatedEntries[i].role}</div>
                   </div>
                 </div>
                 <div className={styles.quoteIcon}>"</div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Icon from './Icon'
+import { useLanguage } from '../context/LanguageContext'
 import styles from './Portfolio.module.css'
 
 const faceIdLogo = `data:image/svg+xml,${encodeURIComponent(`
@@ -93,6 +94,7 @@ const cardVariants = {
 }
 
 export default function Portfolio() {
+  const { t } = useLanguage()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const [flippedIndex, setFlippedIndex] = useState(null)
@@ -149,21 +151,24 @@ export default function Portfolio() {
   }
 
   const isExternalLink = (href) => /^https?:\/\//i.test(href)
+  const translatedProjects = t('portfolio.projects')
 
   return (
     <section className={styles.portfolio} id="portfolio" ref={ref}>
       <div className={styles.sectionIntro}>
-        <p className={styles.sectionKicker}>Selected work</p>
+        <p className={styles.sectionKicker}>{t('portfolio.kicker')}</p>
         <h2 className={styles.sectionTitle}>
-          Featured <span>Projects</span>
+          {t('portfolio.heading')} <span>{t('portfolio.accent')}</span>
         </h2>
         <p className={styles.sectionText}>
-          A few builds that show the range of the work, from AI powered tools to polished web experiences and full stack product ideas.
+          {t('portfolio.intro')}
         </p>
       </div>
 
       <div className={styles.grid}>
-        {projects.map((p, i) => (
+        {projects.map((p, i) => {
+          const translated = translatedProjects[i]
+          return (
           <motion.div
             key={i}
             className={`${styles.card} ${flippedIndex === i ? styles.flipped : ''}`}
@@ -195,22 +200,22 @@ export default function Portfolio() {
 
                 <div className={styles.cardInfo}>
                   <div className={styles.cardMeta}>
-                    <span className={styles.category}>{p.category}</span>
+                    <span className={styles.category}>{translated.category}</span>
                     <div className={styles.tags}>
                       {p.tags.map(t => <span key={t} className={styles.tag}>{t}</span>)}
                     </div>
                   </div>
-                  <h3 className={styles.cardTitle}>{p.title}</h3>
+                  <h3 className={styles.cardTitle}>{translated.title}</h3>
                   <p className={styles.frontHint}>
-                    {canHover ? 'Hover to reveal details' : 'Tap to reveal details'}
+                    {canHover ? t('portfolio.hover') : t('portfolio.tap')}
                   </p>
                 </div>
               </div>
 
               <div className={`${styles.face} ${styles.back}`}>
-                <p className={styles.backKicker}>Project overview</p>
-                <h3 className={styles.backTitle}>{p.title}</h3>
-                <p className={styles.backDesc}>{p.desc}</p>
+                <p className={styles.backKicker}>{t('portfolio.overview')}</p>
+                <h3 className={styles.backTitle}>{translated.title}</h3>
+                <p className={styles.backDesc}>{translated.description}</p>
                 <div className={styles.backTags}>
                   {p.tags.map(t => <span key={t} className={styles.backTag}>{t}</span>)}
                 </div>
@@ -221,12 +226,13 @@ export default function Portfolio() {
                   target={isExternalLink(p.link) ? '_blank' : undefined}
                   rel={isExternalLink(p.link) ? 'noreferrer' : undefined}
                 >
-                  <Icon name="bx bx-link-external" className={styles.overlayBtnIcon} /> View Project
+                  <Icon name="bx bx-link-external" className={styles.overlayBtnIcon} /> {t('portfolio.view')}
                 </a>
               </div>
             </div>
           </motion.div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
