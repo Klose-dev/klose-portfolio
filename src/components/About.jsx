@@ -29,13 +29,16 @@ export default function About() {
           variants={fadeIn('left')}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
+          whileHover={{ rotateY: 3, rotateX: -2, scale: 1.01 }}
+          transition={{ duration: 0.3 }}
+          style={{ perspective: 1000 }}
         >
           <div className={styles.imgBox}>
-            <img src="/images/klose_ab.png" alt="Klose ab" onError={e => { e.target.style.display='none' }} />
+            <img src="/klose-k.jpeg" alt="Portrait of Akongseh Klose" loading="lazy" />
             <div className={styles.imgOverlay} />
           </div>
           <div className={styles.expBadge}>
-            <span className={styles.expNum}>2+</span>
+            <span className={styles.expNum}>3+</span>
             <span className={styles.expLabel}>{t('about.experience')}</span>
           </div>
         </motion.div>
