@@ -47,17 +47,30 @@ const translations = {
     },
     about: {
       heading: 'About', accent: 'Me',
-      paragraphs: [
-        "I'm a Software Engineering student passionate about creating meaningful digital experiences. I believe in writing clean, efficient code and continuously pushing myself to learn and grow.",
-        "I'm driven by challenges and motivated by the endless possibilities of technology to solve real-world problems."
+      headline: 'Full-stack developer building fast, AI-powered web products.',
+      bio: [
+        "I'm a final-year HND Software Engineering student at YIBS in Yaoundé, Cameroon. I specialize in full-stack web development, modern frontend architectures, and AI tooling — building products that solve real problems with clean, maintainable code.",
+        "My recent work includes Face Recognition Attendance, an AI-powered system for automated attendance tracking using Python/OpenCV and React. I work across the stack: React/Vite/Node.js on the frontend, Python/Laravel for APIs, and PostgreSQL/MySQL for data."
       ],
-      coreIdentityLabel: 'CORE IDENTITY',
-      coreIdentityTags: [
-        'Software Engineering Student',
-        'Tech Enthusiast',
-        'Problem Solver',
-        'Quick Learner'
+      currently: 'Currently building an AI-powered code review assistant and exploring Rust for systems programming.',
+      stats: [
+        { label: 'Projects Built', value: 12, suffix: '+' },
+        { label: 'Years Coding', value: 4, suffix: '+' },
+        { label: 'Technologies', value: 18, suffix: '+' },
+        { label: 'Collaborations', value: 8, suffix: '+' }
       ],
+      skills: [
+        'React', 'Vite', 'Node.js', 'Python', 'Tailwind CSS',
+        'TypeScript', 'Laravel', 'PostgreSQL', 'MySQL', 'Git',
+        'Docker', 'REST APIs', 'OpenCV', 'Framer Motion'
+      ],
+      highlights: [
+        { title: 'Education', items: ['HND Software Engineering — YIBS, Yaoundé', 'Final year (2023–2026)'] },
+        { title: 'Focus', items: ['Full-stack Web', 'Frontend Architecture', 'AI Tooling'] },
+        { title: 'Location', items: ['Yaoundé, Cameroon', 'Remote / On-site'] }
+      ],
+      ctaPrimary: 'Download CV',
+      ctaSecondary: "Let's talk",
       name: 'Name', location: 'Location', freelance: 'Freelance', available: 'Available', experience: 'Years Experience', download: 'Download CV',
     },
     experience: {
@@ -181,17 +194,30 @@ const translations = {
     },
     about: {
       heading: 'À', accent: 'propos',
-      paragraphs: [
-        "Je suis un étudiant en Ingénierie Logicielle passionné par la création d'expériences numériques significatives. Je crois en l'écriture d'un code propre et efficace, et je me pousse constamment à apprendre et à grandir.",
-        "Je suis motivé par les défis et inspiré par les possibilités infinies de la technologie pour résoudre des problèmes concrets."
+      headline: 'Développeur full-stack créant des produits web rapides, dopés à l\'IA.',
+      bio: [
+        "Je suis étudiant en dernière année de BTS Ingénierie Logicielle à YIBS à Yaoundé, Cameroun. Je me spécialise dans le développement full-stack, les architectures frontend modernes et l'outillage IA — je construis des produits qui résolvent de vrais problèmes avec un code propre et maintenable.",
+        "Mon travail récent inclut Face Recognition Attendance, un système IA de suivi automatisé des présences utilisant Python/OpenCV et React. J'interviens sur toute la pile : React/Vite/Node.js côté frontend, Python/Laravel pour les API, PostgreSQL/MySQL pour les données."
       ],
-      coreIdentityLabel: 'IDENTITÉ CENTRALE',
-      coreIdentityTags: [
-        'Étudiant en Ingénierie Logicielle',
-        'Passionné de Tech',
-        'Résolveur de Problèmes',
-        'Apprentissage Rapide'
+      currently: 'En ce moment, je développe un assistant de revue de code IA et j\'explore Rust pour la programmation système.',
+      stats: [
+        { label: 'Projets réalisés', value: 12, suffix: '+' },
+        { label: 'Années de code', value: 4, suffix: '+' },
+        { label: 'Technologies', value: 18, suffix: '+' },
+        { label: 'Collaborations', value: 8, suffix: '+' }
       ],
+      skills: [
+        'React', 'Vite', 'Node.js', 'Python', 'Tailwind CSS',
+        'TypeScript', 'Laravel', 'PostgreSQL', 'MySQL', 'Git',
+        'Docker', 'REST APIs', 'OpenCV', 'Framer Motion'
+      ],
+      highlights: [
+        { title: 'Formation', items: ['BTS Ingénierie Logicielle — YIBS, Yaoundé', 'Dernière année (2023–2026)'] },
+        { title: 'Spécialités', items: ['Full-stack Web', 'Architecture Frontend', 'Outillage IA'] },
+        { title: 'Localisation', items: ['Yaoundé, Cameroun', 'Remote / Sur site'] }
+      ],
+      ctaPrimary: 'Télécharger le CV',
+      ctaSecondary: 'Discutons',
       name: 'Nom', location: 'Localisation', freelance: 'Freelance', available: 'Disponible', experience: "Années d'expérience", download: 'Télécharger le CV',
     },
     experience: {
